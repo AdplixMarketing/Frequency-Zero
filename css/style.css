@@ -154,6 +154,26 @@ body {
     border: 1px solid var(--success);
 }
 
+.help-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.help-btn:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
 /* ===== Navigation Tabs ===== */
 .nav-tabs {
     display: flex;

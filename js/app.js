@@ -105,6 +105,14 @@ const App = {
             });
         }
 
+        // Help button (show tutorial)
+        const helpBtn = document.getElementById('help-btn');
+        if (helpBtn) {
+            helpBtn.addEventListener('click', () => {
+                this.showTutorial();
+            });
+        }
+
         // Reward modal close
         const closeReward = document.getElementById('close-reward-btn');
         if (closeReward) {
@@ -138,19 +146,23 @@ const App = {
         }
     },
 
-    showTutorial() {
+    showTutorial(markAsSeen = false) {
         const modal = document.getElementById('tutorial-modal');
         if (modal) {
             modal.classList.add('active');
+            modal.dataset.markAsSeen = markAsSeen ? 'true' : 'false';
         }
     },
 
     hideTutorial() {
         const modal = document.getElementById('tutorial-modal');
         if (modal) {
+            // Only mark as seen on first view
+            if (!Storage.hasSeeenTutorial()) {
+                Storage.markTutorialSeen();
+            }
             modal.classList.remove('active');
         }
-        Storage.markTutorialSeen();
     },
 
     // ===== Stats =====

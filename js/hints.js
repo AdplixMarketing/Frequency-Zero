@@ -186,10 +186,23 @@ const Hints = {
         }
 
         if (type === 'letter') {
+            // Initialize answer if not already set
+            if (!this.currentAnswer && puzzle) {
+                this.setAnswer(puzzle.answer);
+            }
+
             const revealed = this.revealLetter();
             if (revealed) {
+                // Show the hint display
+                const hintDisplay = document.getElementById('hint-display');
+                if (hintDisplay) {
+                    hintDisplay.classList.add('visible');
+                }
                 this.updateHintDisplay();
                 this.showHintNotification(`Letter revealed: ${revealed.char}`);
+            } else {
+                // All letters revealed
+                this.showHintNotification(`All letters already revealed!`);
             }
             return revealed;
         } else if (type === 'category') {
