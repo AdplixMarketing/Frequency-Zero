@@ -146,6 +146,16 @@ body {
     border: 1px solid var(--warning);
 }
 
+.stat-badge.clickable {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.stat-badge.clickable:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 209, 102, 0.4);
+}
+
 .hints-badge {
     border: 1px solid var(--accent-primary);
 }

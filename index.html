@@ -26,10 +26,10 @@
                 <h1 class="logo">DECOD<span class="logo-accent">JI</span></h1>
             </div>
             <div class="header-right">
-                <div class="stat-badge energy-badge" id="energy-display">
+                <button class="stat-badge energy-badge clickable" id="energy-display" title="Get more energy">
                     <span class="stat-icon">⚡</span>
                     <span class="stat-value" id="energy-value">10</span>
-                </div>
+                </button>
                 <div class="stat-badge hints-badge" id="hints-display">
                     <span class="stat-icon">💡</span>
                     <span class="stat-value" id="hints-value">5</span>
@@ -338,14 +338,19 @@
         <div class="modal-overlay"></div>
         <div class="modal-content bonus-energy-content">
             <div class="bonus-icon">⚡</div>
-            <h2>Need More Energy?</h2>
-            <p>Watch a short video to get +3 bonus energy!</p>
-            <div class="bonus-actions">
+            <h2 id="bonus-modal-title">Need More Energy?</h2>
+            <p id="bonus-modal-text">Watch a short video to get +10 bonus energy!</p>
+            <div class="bonus-actions" id="bonus-actions-watch">
                 <button class="result-btn watch-ad-btn" id="watch-ad-btn">
                     ▶️ Watch Video
                 </button>
                 <button class="result-btn secondary" id="no-thanks-btn">
                     No Thanks
+                </button>
+            </div>
+            <div class="bonus-actions" id="bonus-actions-continue" style="display: none;">
+                <button class="result-btn" id="continue-playing-btn">
+                    Continue Playing →
                 </button>
             </div>
         </div>

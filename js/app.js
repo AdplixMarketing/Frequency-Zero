@@ -137,6 +137,17 @@ const App = {
             });
         }
 
+        const continuePlayingBtn = document.getElementById('continue-playing-btn');
+        if (continuePlayingBtn) {
+            continuePlayingBtn.addEventListener('click', () => {
+                Energy.hideBonusEnergyModal();
+                // Load next puzzle if in practice mode
+                if (Game.currentMode === 'practice') {
+                    Game.loadPuzzle();
+                }
+            });
+        }
+
         // Daily complete modal close (click overlay)
         const dailyCompleteOverlay = document.querySelector('#daily-complete-modal .modal-overlay');
         if (dailyCompleteOverlay) {

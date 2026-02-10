@@ -5,13 +5,23 @@
 
 const Energy = {
     MAX_ENERGY: 10,
-    BONUS_ENERGY_AMOUNT: 3,
+    BONUS_ENERGY_AMOUNT: 10,
 
     // ===== Core Methods =====
 
     init() {
         this.updateDisplay();
         this.startRefillTimer();
+        this.setupClickHandler();
+    },
+
+    setupClickHandler() {
+        const energyBadge = document.getElementById('energy-display');
+        if (energyBadge) {
+            energyBadge.addEventListener('click', () => {
+                this.showBonusEnergyModal();
+            });
+        }
     },
 
     getCurrent() {
@@ -103,6 +113,17 @@ const Energy = {
     showBonusEnergyModal() {
         const modal = document.getElementById('bonus-energy-modal');
         if (modal) {
+            // Reset to initial state
+            const title = document.getElementById('bonus-modal-title');
+            const text = document.getElementById('bonus-modal-text');
+            const watchActions = document.getElementById('bonus-actions-watch');
+            const continueActions = document.getElementById('bonus-actions-continue');
+
+            if (title) title.textContent = 'Need More Energy?';
+            if (text) text.textContent = `Watch a short video to get +${this.BONUS_ENERGY_AMOUNT} bonus energy!`;
+            if (watchActions) watchActions.style.display = 'flex';
+            if (continueActions) continueActions.style.display = 'none';
+
             modal.classList.add('active');
         }
     },
@@ -116,7 +137,17 @@ const Energy = {
 
     grantBonusEnergy() {
         this.add(this.BONUS_ENERGY_AMOUNT);
-        this.hideBonusEnergyModal();
+
+        // Update modal to show success state
+        const title = document.getElementById('bonus-modal-title');
+        const text = document.getElementById('bonus-modal-text');
+        const watchActions = document.getElementById('bonus-actions-watch');
+        const continueActions = document.getElementById('bonus-actions-continue');
+
+        if (title) title.textContent = 'Energy Added!';
+        if (text) text.textContent = `You now have ${this.getCurrent()} energy. Let's play!`;
+        if (watchActions) watchActions.style.display = 'none';
+        if (continueActions) continueActions.style.display = 'flex';
 
         // Show notification
         this.showEnergyNotification(`+${this.BONUS_ENERGY_AMOUNT} Energy!`);
