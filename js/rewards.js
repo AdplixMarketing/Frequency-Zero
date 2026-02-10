@@ -239,22 +239,27 @@ const Rewards = {
     // ===== Confetti Effect =====
 
     createConfetti() {
-        const colors = ['#ff6b9d', '#06d6a0', '#ffd166', '#7c3aed', '#ff5286'];
+        const colors = ['#ff6b9d', '#06d6a0', '#ffd166', '#7c3aed', '#ff5286', '#00d4ff', '#ff4757', '#2ed573'];
         const shapes = ['square', 'circle', 'triangle'];
 
-        for (let i = 0; i < 50; i++) {
+        // Create lots of confetti particles!
+        for (let i = 0; i < 100; i++) {
             setTimeout(() => {
                 const confetti = document.createElement('div');
                 confetti.className = `confetti-particle ${shapes[Math.floor(Math.random() * shapes.length)]}`;
                 confetti.style.left = `${Math.random() * 100}vw`;
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDuration = `${2 + Math.random() * 2}s`;
-                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                confetti.style.animationDuration = `${2.5 + Math.random() * 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.3}s`;
+                // Random sizes
+                const size = 8 + Math.random() * 12;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
 
                 document.body.appendChild(confetti);
 
-                setTimeout(() => confetti.remove(), 4000);
-            }, i * 30);
+                setTimeout(() => confetti.remove(), 5000);
+            }, i * 20);
         }
     },
 

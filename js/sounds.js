@@ -36,7 +36,7 @@ const Sounds = {
 
     // ===== Sound Effects =====
 
-    // Correct answer - cheerful ascending tones
+    // Correct answer - BIG celebratory fanfare!
     playCorrect() {
         if (!this.enabled) return;
         this.ensureContext();
@@ -46,43 +46,80 @@ const Sounds = {
 
         const now = ctx.currentTime;
 
-        // Play a cheerful chord progression
-        const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5 (C major chord)
-
-        frequencies.forEach((freq, i) => {
+        // First chord - C major (loud)
+        const chord1 = [261.63, 329.63, 392]; // C4, E4, G4
+        chord1.forEach((freq) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-
-            osc.type = 'sine';
+            osc.type = 'square';
             osc.frequency.setValueAtTime(freq, now);
-
-            gain.gain.setValueAtTime(0, now);
-            gain.gain.linearRampToValueAtTime(0.15, now + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
-
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
             osc.connect(gain);
             gain.connect(ctx.destination);
-
-            osc.start(now + i * 0.08);
-            osc.stop(now + 0.5);
+            osc.start(now);
+            osc.stop(now + 0.3);
         });
 
-        // Add a higher "ding" on top
+        // Second chord - higher (triumph!)
+        const chord2 = [329.63, 415.3, 523.25]; // E4, G#4, C5
+        chord2.forEach((freq) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(freq, now + 0.15);
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.setValueAtTime(0.12, now + 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + 0.15);
+            osc.stop(now + 0.45);
+        });
+
+        // Third chord - even higher (victory!)
+        const chord3 = [523.25, 659.25, 783.99]; // C5, E5, G5
+        chord3.forEach((freq) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, now + 0.3);
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.setValueAtTime(0.1, now + 0.3);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + 0.3);
+            osc.stop(now + 0.7);
+        });
+
+        // Final high ding - the cherry on top!
         const ding = ctx.createOscillator();
         const dingGain = ctx.createGain();
-
         ding.type = 'sine';
-        ding.frequency.setValueAtTime(1046.5, now + 0.2); // C6
-
-        dingGain.gain.setValueAtTime(0, now + 0.2);
-        dingGain.gain.linearRampToValueAtTime(0.2, now + 0.25);
-        dingGain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
-
+        ding.frequency.setValueAtTime(1318.5, now + 0.45); // E6
+        dingGain.gain.setValueAtTime(0, now);
+        dingGain.gain.setValueAtTime(0.25, now + 0.45);
+        dingGain.gain.exponentialRampToValueAtTime(0.01, now + 1.0);
         ding.connect(dingGain);
         dingGain.connect(ctx.destination);
+        ding.start(now + 0.45);
+        ding.stop(now + 1.0);
 
-        ding.start(now + 0.2);
-        ding.stop(now + 0.7);
+        // Extra sparkle dings
+        [1046.5, 1568, 2093].forEach((freq, i) => {
+            const sparkle = ctx.createOscillator();
+            const sparkleGain = ctx.createGain();
+            sparkle.type = 'sine';
+            sparkle.frequency.setValueAtTime(freq, now + 0.5 + i * 0.1);
+            sparkleGain.gain.setValueAtTime(0, now);
+            sparkleGain.gain.setValueAtTime(0.15, now + 0.5 + i * 0.1);
+            sparkleGain.gain.exponentialRampToValueAtTime(0.01, now + 0.8 + i * 0.1);
+            sparkle.connect(sparkleGain);
+            sparkleGain.connect(ctx.destination);
+            sparkle.start(now + 0.5 + i * 0.1);
+            sparkle.stop(now + 0.9 + i * 0.1);
+        });
     },
 
     // Wrong answer - low buzz/error sound
