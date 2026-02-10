@@ -252,11 +252,13 @@ const Leaderboard = {
             timeLabel = 'Speed Bonus (under 60s)';
         }
 
-        // Hint penalty
-        const hintPenalty = hintsUsed * 20;
-
         // No-hint bonus
         const noHintBonus = hintsUsed === 0 ? 100 : 0;
+
+        // Hint penalty (capped so score doesn't go below 0)
+        const maxPenalty = basePoints + timeBonus; // Can't lose more than you earned
+        const rawHintPenalty = hintsUsed * 20;
+        const hintPenalty = Math.min(rawHintPenalty, maxPenalty);
 
         // Difficulty multiplier
         const difficultyMultiplier = {
@@ -279,7 +281,7 @@ const Leaderboard = {
 
         // Calculate subtotal before multipliers
         let subtotal = basePoints + timeBonus - hintPenalty + noHintBonus;
-        subtotal = Math.max(10, subtotal); // Minimum 10 points
+        subtotal = Math.max(0, subtotal); // Never go negative
 
         // Calculate total with multipliers
         const totalMultiplier = difficultyMultiplier * streakMultiplier * rewardMultiplier;
