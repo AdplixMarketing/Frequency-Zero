@@ -136,6 +136,16 @@ body {
     border-radius: var(--radius-xl);
     font-size: 0.875rem;
     font-weight: 600;
+    color: #ffffff !important;
+    border: none;
+}
+
+button.stat-badge,
+button.stat-badge .stat-value,
+#energy-display,
+#energy-display .stat-value,
+#energy-value {
+    color: #ffffff !important;
 }
 
 .stat-icon {
@@ -144,6 +154,11 @@ body {
 
 .energy-badge {
     border: 1px solid var(--warning);
+}
+
+.energy-badge .stat-value {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
 }
 
 .stat-badge.clickable {
