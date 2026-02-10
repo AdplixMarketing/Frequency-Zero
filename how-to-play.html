@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to play Decodji - Complete guide to decoding emoji puzzles, earning points, and climbing the leaderboards.">
+    <title>How to Play - Decodji</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .content-section {
+            margin-bottom: 40px;
+        }
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-primary);
+        }
+        .content-section h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+        .content-section p, .content-section li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        .example-box {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+        .example-box .emoji-display {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .example-box .answer {
+            text-align: center;
+            color: var(--success);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .example-box .explanation {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .step-card {
+            display: flex;
+            gap: 20px;
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+        .step-content p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+        .tip-box {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(255, 82, 134, 0.1));
+            border: 1px solid var(--accent-primary);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+        }
+        .tip-box h4 {
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+        .tip-box p {
+            margin: 0;
+        }
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .scoring-table th, .scoring-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .scoring-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .scoring-table td {
+            color: var(--text-secondary);
+        }
+        .scoring-table .points {
+            color: var(--success);
+            font-weight: 600;
+        }
+        .scoring-table .penalty {
+            color: var(--error);
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: #ff5286;
+        }
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="nav-links">
+            <a href="/">Play Game</a>
+            <a href="/about.html">About</a>
+            <a href="/how-to-play.html">How to Play</a>
+            <a href="/faq.html">FAQ</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>How to Play</h1>
+            <p class="subtitle">Master the art of decoding emoji puzzles</p>
+        </div>
+
+        <div class="content-section">
+            <h2>The Basics</h2>
+            <p>Decodji is simple to learn but endlessly entertaining. Each puzzle shows you a series of emojis that represent a movie, song, phrase, brand, or place. Your goal is to figure out what they represent and type your answer!</p>
+
+            <div class="example-box">
+                <div class="emoji-display">🦁 👑</div>
+                <div class="answer">The Lion King</div>
+                <div class="explanation">Lion + Crown = The Lion King</div>
+            </div>
+
+            <div class="example-box">
+                <div class="emoji-display">⭐ ⚔️</div>
+                <div class="answer">Star Wars</div>
+                <div class="explanation">Star + Swords/Wars = Star Wars</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Getting Started</h2>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Look at the Emojis</h3>
+                    <p>Study the emoji clues carefully. Think about what each emoji represents and how they might combine to form a word, phrase, or title.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Check the Category</h3>
+                    <p>The category badge tells you what type of answer to look for - Movies, TV Shows, Songs, Phrases, Brands, or Places. This narrows down the possibilities!</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Type Your Answer</h3>
+                    <p>Enter your guess in the text box and press Enter or tap the arrow button. Don't worry about exact spelling - we allow for minor typos!</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Use Hints if Stuck</h3>
+                    <p>If you're stuck, tap the Hint button to reveal a letter. But use them wisely - hints reduce your score!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Game Modes</h2>
+
+            <h3>🎯 Daily Challenge (Free)</h3>
+            <p>Every day, three new puzzles are available for everyone worldwide. Complete all three to maintain your streak and compete on the leaderboards. Daily challenges are completely free - no energy required!</p>
+            <ul>
+                <li><strong>Easy:</strong> Simpler puzzles with common movies/phrases</li>
+                <li><strong>Medium:</strong> Moderate difficulty with 1.5x score multiplier</li>
+                <li><strong>Hard:</strong> Challenging puzzles with 2x score multiplier</li>
+            </ul>
+
+            <h3>🎮 Practice Mode</h3>
+            <p>Want more puzzles? Practice mode gives you unlimited random puzzles from any category. Each puzzle costs 1 energy point. You get 10 energy per day, plus you can earn bonus energy through rewards!</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Scoring System</h2>
+            <p>Your score is calculated based on speed, accuracy, and hint usage:</p>
+
+            <table class="scoring-table">
+                <tr>
+                    <th>Action</th>
+                    <th>Points</th>
+                </tr>
+                <tr>
+                    <td>Base Points (correct answer)</td>
+                    <td class="points">+100</td>
+                </tr>
+                <tr>
+                    <td>Speed Bonus (under 10 seconds)</td>
+                    <td class="points">+50</td>
+                </tr>
+                <tr>
+                    <td>Speed Bonus (under 30 seconds)</td>
+                    <td class="points">+30</td>
+                </tr>
+                <tr>
+                    <td>Speed Bonus (under 60 seconds)</td>
+                    <td class="points">+10</td>
+                </tr>
+                <tr>
+                    <td>No-Hint Bonus</td>
+                    <td class="points">+100</td>
+                </tr>
+                <tr>
+                    <td>Each Hint Used</td>
+                    <td class="penalty">-20</td>
+                </tr>
+                <tr>
+                    <td>Medium Difficulty Multiplier</td>
+                    <td class="points">×1.5</td>
+                </tr>
+                <tr>
+                    <td>Hard Difficulty Multiplier</td>
+                    <td class="points">×2.0</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip</h4>
+                <p>Solving without hints gives you a massive +100 bonus! Try to figure out the answer before using hints to maximize your score.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Streaks & Rewards</h2>
+
+            <h3>🔥 Daily Streaks</h3>
+            <p>Complete at least one daily puzzle each day to build your streak. The longer your streak, the higher your score multiplier:</p>
+            <ul>
+                <li>Each consecutive day adds +10% to your score multiplier</li>
+                <li>Maximum streak bonus: 2x (100% boost)</li>
+                <li>Missing a day resets your streak to zero!</li>
+            </ul>
+
+            <h3>🎁 Daily Rewards</h3>
+            <p>Visit the Rewards tab each day to claim prizes:</p>
+            <ul>
+                <li><strong>Day 1:</strong> +2 Energy</li>
+                <li><strong>Day 2:</strong> +1 Hint Token</li>
+                <li><strong>Day 3:</strong> +3 Energy</li>
+                <li><strong>Day 4:</strong> +2 Hint Tokens</li>
+                <li><strong>Day 5:</strong> 2x Score Multiplier (24 hours)</li>
+                <li><strong>Day 6:</strong> +5 Energy</li>
+                <li><strong>Day 7:</strong> Mystery Box (5-10 hints or energy!)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Tips for Success</h2>
+            <ul>
+                <li><strong>Think literally AND figuratively:</strong> Sometimes emojis represent sounds (🐝 = "B" sound) or visual concepts.</li>
+                <li><strong>Consider the category:</strong> Knowing you're looking for a movie vs. a phrase changes how you interpret the emojis.</li>
+                <li><strong>Look for patterns:</strong> Common emoji combinations often appear - learn to recognize them!</li>
+                <li><strong>Don't overthink it:</strong> The answer is usually more obvious than you think.</li>
+                <li><strong>Play daily:</strong> Regular play builds your emoji vocabulary and pattern recognition.</li>
+                <li><strong>Save hints for hard puzzles:</strong> You have limited hints, so use them strategically.</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Common Emoji Patterns</h2>
+            <p>Here are some common emoji patterns to help you decode puzzles:</p>
+            <ul>
+                <li>🌟 or ⭐ often means "Star" in a title</li>
+                <li>❤️ or 💕 usually represents "Love"</li>
+                <li>👑 indicates "King," "Queen," or "Royal"</li>
+                <li>🏠 or 🏡 means "Home" or "House"</li>
+                <li>🌙 represents "Night," "Moon," or "Dream"</li>
+                <li>🔥 can mean "Fire," "Hot," or intensity</li>
+                <li>💀 often indicates "Dead," "Death," or pirates</li>
+                <li>🎭 represents theater, drama, or performance</li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <p>Ready to put your skills to the test?</p>
+            <a href="/" class="btn-primary">Start Playing →</a>
+        </div>
+
+        <footer class="site-footer">
+            <a href="/privacy.html">Privacy Policy</a>
+        </footer>
+    </div>
+</body>
+</html>

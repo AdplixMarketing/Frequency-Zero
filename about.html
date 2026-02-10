@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Decodji - The fun emoji puzzle game where you decode movies, songs, phrases and brands from emoji clues.">
+    <title>About - Decodji</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .content-section {
+            margin-bottom: 40px;
+        }
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-primary);
+        }
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .emoji-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 3rem;
+            margin: 30px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+        .feature-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            margin-top: 40px;
+        }
+        .cta-section h2 {
+            margin-bottom: 15px;
+        }
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .btn-primary:hover {
+            background: #ff5286;
+            transform: translateY(-2px);
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="nav-links">
+            <a href="/">Play Game</a>
+            <a href="/about.html">About</a>
+            <a href="/how-to-play.html">How to Play</a>
+            <a href="/faq.html">FAQ</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>About Decodji</h1>
+            <p class="subtitle">The Ultimate Emoji Puzzle Game</p>
+        </div>
+
+        <div class="emoji-showcase">
+            <span>🎬</span>
+            <span>🎵</span>
+            <span>💬</span>
+            <span>🏷️</span>
+        </div>
+
+        <div class="content-section">
+            <h2>What is Decodji?</h2>
+            <p>Decodji is a fun and addictive puzzle game that challenges you to decode movies, songs, phrases, and brands from emoji clues. Each puzzle presents you with a series of emojis that represent a well-known title or phrase, and your job is to figure out what it is!</p>
+            <p>Whether you're a movie buff, music lover, or just enjoy a good brain teaser, Decodji offers endless entertainment with hundreds of puzzles across multiple categories. Test your knowledge, challenge your friends, and see how many you can decode!</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Puzzles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Daily Challenges</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Free to Play</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Game Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h3>Daily Challenges</h3>
+                    <p>Three new puzzles every day! Complete them all to build your streak and earn bonus points. Same puzzles for everyone worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏆</div>
+                    <h3>Leaderboards</h3>
+                    <p>Compete against players worldwide. Climb the daily, weekly, and monthly leaderboards to prove you're the ultimate decoder.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💡</div>
+                    <h3>Hint System</h3>
+                    <p>Stuck on a puzzle? Use hints to reveal letters one at a time. But be strategic - using fewer hints means more points!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔥</div>
+                    <h3>Streak Rewards</h3>
+                    <p>Play every day to build your streak. The longer your streak, the higher your score multiplier. Don't break the chain!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎁</div>
+                    <h3>Daily Rewards</h3>
+                    <p>Log in daily to claim rewards including bonus energy, hint tokens, and score multipliers. Day 7 brings a mystery box!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Statistics</h3>
+                    <p>Track your progress with detailed stats. See your accuracy, best streak, total puzzles solved, and performance by category.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Puzzle Categories</h2>
+            <p>Decodji features puzzles across six exciting categories:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🎬</div>
+                    <h3>Movies</h3>
+                    <p>From classic films to modern blockbusters, decode your favorite movies from emoji clues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📺</div>
+                    <h3>TV Shows</h3>
+                    <p>Popular series from streaming platforms and broadcast television.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎵</div>
+                    <h3>Songs</h3>
+                    <p>Hit songs and classic tunes represented through creative emoji combinations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💬</div>
+                    <h3>Phrases</h3>
+                    <p>Common sayings, idioms, and expressions translated into emoji form.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏷️</div>
+                    <h3>Brands</h3>
+                    <p>Famous brands and companies depicted through clever emoji representations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌍</div>
+                    <h3>Places</h3>
+                    <p>Landmarks, cities, and famous locations from around the world.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Why Play Decodji?</h2>
+            <p><strong>Brain Training:</strong> Emoji puzzles exercise your lateral thinking, pattern recognition, and creative problem-solving skills. It's a fun way to keep your mind sharp!</p>
+            <p><strong>Quick Entertainment:</strong> Each puzzle takes just seconds to minutes to solve, making it perfect for short breaks, commutes, or waiting rooms.</p>
+            <p><strong>Social Fun:</strong> Share your results with friends and challenge them to beat your score. Compare streaks and compete on the leaderboards.</p>
+            <p><strong>No Pressure:</strong> Daily challenges are free and don't cost energy. Play at your own pace with practice mode when you want more puzzles.</p>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Start Decoding?</h2>
+            <p>Jump into your first puzzle and see how many you can solve!</p>
+            <a href="/" class="btn-primary">Play Now →</a>
+        </div>
+
+        <footer class="site-footer">
+            <a href="/privacy.html">Privacy Policy</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1171,3 +1171,8 @@ button.stat-badge .stat-value,
 .site-footer a:hover {
     color: var(--accent-primary);
 }
+
+.footer-divider {
+    color: var(--text-muted);
+    margin: 0 10px;
+}

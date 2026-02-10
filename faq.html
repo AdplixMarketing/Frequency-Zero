@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently Asked Questions about Decodji - Get answers about gameplay, scoring, hints, and more.">
+    <title>FAQ - Decodji</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .faq-section {
+            margin-bottom: 40px;
+        }
+        .faq-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--accent-primary);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .faq-item {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover {
+            background: var(--bg-card);
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+        }
+        .faq-item.open .faq-question::after {
+            content: '−';
+        }
+        .faq-answer {
+            padding: 0 25px 20px 25px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            display: none;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+        .faq-answer ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+        .contact-box {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-top: 40px;
+        }
+        .contact-box h3 {
+            margin-bottom: 15px;
+        }
+        .contact-box p {
+            color: var(--text-secondary);
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+            background: #ff5286;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="nav-links">
+            <a href="/">Play Game</a>
+            <a href="/about.html">About</a>
+            <a href="/how-to-play.html">How to Play</a>
+            <a href="/faq.html">FAQ</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>Frequently Asked Questions</h1>
+            <p class="subtitle">Everything you need to know about Decodji</p>
+        </div>
+
+        <div class="faq-section">
+            <h2>🎮 Gameplay</h2>
+
+            <div class="faq-item open">
+                <div class="faq-question">How do I play Decodji?</div>
+                <div class="faq-answer">
+                    <p>Look at the emoji clues displayed on screen and try to figure out what movie, song, phrase, brand, or place they represent. Type your answer in the text box and press Enter. The category badge gives you a hint about what type of answer to look for!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What are the different categories?</div>
+                <div class="faq-answer">
+                    <p>Decodji features six categories:</p>
+                    <ul>
+                        <li><strong>Movies:</strong> Popular films from all eras</li>
+                        <li><strong>TV Shows:</strong> Series from streaming and broadcast</li>
+                        <li><strong>Songs:</strong> Hit songs and classic tunes</li>
+                        <li><strong>Phrases:</strong> Common sayings and expressions</li>
+                        <li><strong>Brands:</strong> Famous companies and products</li>
+                        <li><strong>Places:</strong> Landmarks and famous locations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Does spelling matter?</div>
+                <div class="faq-answer">
+                    <p>We're flexible with spelling! Minor typos are usually accepted, and you don't need to worry about articles like "The" or "A" at the beginning of titles. For example, both "Lion King" and "The Lion King" would be accepted.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What happens if I get it wrong?</div>
+                <div class="faq-answer">
+                    <p>Don't worry! You can keep guessing until you get it right. There's no penalty for wrong guesses - only using hints reduces your score. If you're really stuck, you can use hints or skip the puzzle.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>🎯 Daily Challenge</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What is the Daily Challenge?</div>
+                <div class="faq-answer">
+                    <p>Every day, three new puzzles are available for everyone worldwide - Easy, Medium, and Hard. Complete all three to build your streak and compete on the daily leaderboard. The puzzles reset at midnight Central Time (Chicago).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Does the Daily Challenge cost energy?</div>
+                <div class="faq-answer">
+                    <p>No! Daily challenges are completely free. You can play all three daily puzzles without using any energy. Energy is only used for Practice Mode.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">When do daily puzzles reset?</div>
+                <div class="faq-answer">
+                    <p>Daily puzzles reset at midnight Central Time (America/Chicago timezone). A countdown timer shows you how long until the next set of puzzles.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Are the daily puzzles the same for everyone?</div>
+                <div class="faq-answer">
+                    <p>Yes! Everyone around the world gets the same three daily puzzles. This makes it fair for leaderboard competition and lets you compare results with friends.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>⚡ Energy & Hints</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What is energy?</div>
+                <div class="faq-answer">
+                    <p>Energy is used to play puzzles in Practice Mode. You start with 10 energy and it refills to 10 every day at midnight. Daily challenges don't use energy - they're always free!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do hints work?</div>
+                <div class="faq-answer">
+                    <p>When you tap the Hint button, one letter of the answer is revealed. This helps you figure out the puzzle, but each hint used reduces your score by 20 points. In Practice Mode, hints are free!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I get more energy and hints?</div>
+                <div class="faq-answer">
+                    <p>There are several ways to get more:</p>
+                    <ul>
+                        <li>Daily energy refill (10 energy at midnight)</li>
+                        <li>Daily rewards (visit the Rewards tab)</li>
+                        <li>Watching optional bonus videos</li>
+                        <li>Completing streak milestones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>🔥 Streaks & Scoring</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">How do streaks work?</div>
+                <div class="faq-answer">
+                    <p>Complete at least one daily puzzle each day to maintain your streak. Your streak count increases by 1 each consecutive day you play. Missing a day resets your streak to zero, so play daily to keep it going!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How is my score calculated?</div>
+                <div class="faq-answer">
+                    <p>Your score is based on:</p>
+                    <ul>
+                        <li>Base points: 100 for correct answer</li>
+                        <li>Speed bonus: Up to +50 for fast answers</li>
+                        <li>No-hint bonus: +100 if you don't use hints</li>
+                        <li>Hint penalty: -20 for each hint used</li>
+                        <li>Difficulty multiplier: 1.5x for Medium, 2x for Hard</li>
+                        <li>Streak multiplier: Up to 2x based on your streak</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What are the leaderboards?</div>
+                <div class="faq-answer">
+                    <p>Leaderboards show the top players by score. There are three leaderboards:</p>
+                    <ul>
+                        <li><strong>Daily:</strong> Resets every day at midnight</li>
+                        <li><strong>Weekly:</strong> Resets every Sunday</li>
+                        <li><strong>Monthly:</strong> Resets on the 1st of each month</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>🎁 Daily Rewards</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">How do daily rewards work?</div>
+                <div class="faq-answer">
+                    <p>Visit the Rewards tab each day to claim a prize. The rewards follow a 7-day cycle, with increasingly valuable rewards each day. Day 7 features a Mystery Box with bonus prizes!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What rewards can I get?</div>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Day 1: +2 Energy</li>
+                        <li>Day 2: +1 Hint Token</li>
+                        <li>Day 3: +3 Energy</li>
+                        <li>Day 4: +2 Hint Tokens</li>
+                        <li>Day 5: 2x Score Multiplier (24 hours)</li>
+                        <li>Day 6: +5 Energy</li>
+                        <li>Day 7: Mystery Box (5-10 hints or energy)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>💾 Account & Data</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Do I need to create an account?</div>
+                <div class="faq-answer">
+                    <p>No account is required! Decodji saves your progress automatically using your browser's local storage. Just keep playing on the same browser and device to maintain your stats and streak.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How is my progress saved?</div>
+                <div class="faq-answer">
+                    <p>Your game data (scores, streaks, stats) is saved locally on your device. This means your progress is tied to your specific browser - playing on a different browser or device will start fresh.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I reset my progress?</div>
+                <div class="faq-answer">
+                    <p>Yes, you can reset your progress by clearing your browser's local storage for this site. Go to your browser settings > Privacy/Cookies > Clear site data for decodji.com. Note: This cannot be undone!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>🛠️ Technical Issues</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">The game isn't loading properly</div>
+                <div class="faq-answer">
+                    <p>Try these steps:</p>
+                    <ul>
+                        <li>Refresh the page (Ctrl+R or Cmd+R)</li>
+                        <li>Clear your browser cache</li>
+                        <li>Try a different browser</li>
+                        <li>Disable browser extensions that might interfere</li>
+                        <li>Make sure JavaScript is enabled</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">My streak disappeared!</div>
+                <div class="faq-answer">
+                    <p>Streaks reset if you miss a day of playing. Make sure to complete at least one daily puzzle each day before midnight (Central Time) to maintain your streak. If you believe this is an error, try refreshing the page.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Sounds aren't playing</div>
+                <div class="faq-answer">
+                    <p>Sound effects require user interaction to start (browser policy). Click or tap anywhere on the game first, then sounds should work. Also check that your device isn't muted!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h3>Still have questions?</h3>
+            <p>Can't find the answer you're looking for? We're here to help!</p>
+            <a href="/" class="btn-primary">Play Decodji →</a>
+        </div>
+
+        <footer class="site-footer">
+            <a href="/privacy.html">Privacy Policy</a>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                // Open clicked item if it wasn't already open
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
