@@ -86,6 +86,9 @@ const Rewards = {
         this.renderCalendar();
         this.updateStreakDisplay();
 
+        // Play reward sound
+        Sounds.playReward();
+
         // Show reward modal
         this.showRewardModal(reward.icon, rewardResult);
 

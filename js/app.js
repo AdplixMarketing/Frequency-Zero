@@ -13,6 +13,7 @@ const App = {
         this.checkDayChange();
 
         // Initialize all systems
+        Sounds.init();
         Energy.init();
         Hints.init();
         Rewards.init();

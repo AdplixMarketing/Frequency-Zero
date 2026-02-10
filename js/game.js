@@ -353,6 +353,9 @@ const Game = {
         this.stopTimer();
         this.isPlaying = false;
 
+        // Play correct sound
+        Sounds.playCorrect();
+
         const input = document.getElementById('answer-input');
         if (input) {
             input.classList.add('correct');
@@ -402,6 +405,9 @@ const Game = {
     },
 
     handleWrongAnswer(input) {
+        // Play wrong sound
+        Sounds.playWrong();
+
         input.classList.add('incorrect');
 
         // Shake animation
@@ -417,6 +423,9 @@ const Game = {
 
     skipPuzzle() {
         if (!this.isPlaying || !this.currentPuzzle) return;
+
+        // Play skip sound
+        Sounds.playSkip();
 
         this.stopTimer();
         this.isPlaying = false;
@@ -456,6 +465,8 @@ const Game = {
 
         const result = Hints.useHint(this.currentPuzzle, 'letter', freeHint);
         if (result) {
+            // Play hint sound
+            Sounds.playHint();
             this.hintsUsedThisPuzzle++;
         }
     },
