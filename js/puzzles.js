@@ -121,7 +121,7 @@ const PUZZLES = {
             { id: 't30', emojis: ['🎪', '🔮'], answer: 'Carnival Row', hints: ['Amazon', 'Fantasy', 'Fae'] },
         ],
         hard: [
-            { id: 't31', emojis: ['⌛', '🚂'], answer: 'Dark', hints: ['Netflix', 'German', 'Time Travel'] },
+            { id: 't31', emojis: ['⌛', '🕳️', '🔦'], answer: 'Dark', hints: ['Netflix', 'German', 'Time Travel'] },
             { id: 't32', emojis: ['🎩', '🔫', '🥃'], answer: 'Peaky Blinders', hints: ['BBC', 'Gangster', 'Birmingham'] },
             { id: 't33', emojis: ['🖥️', '🔓'], answer: 'Mr Robot', hints: ['USA', 'Hacker', 'Elliot'] },
             { id: 't34', emojis: ['📕', '👧'], answer: 'The Handmaids Tale', hints: ['Hulu', 'Dystopia', 'Gilead'] },
