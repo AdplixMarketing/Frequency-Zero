@@ -292,13 +292,13 @@ hintStyles.textContent = `
         top: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(135deg, #e94560, #d63850);
+        background: linear-gradient(135deg, #ff6b9d, #ff5286);
         color: white;
         padding: 12px 24px;
         border-radius: 50px;
         font-weight: 600;
         z-index: 10000;
-        box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.4);
         display: flex;
         align-items: center;
         gap: 8px;
@@ -330,7 +330,7 @@ hintStyles.textContent = `
     }
 
     .hint-letter {
-        color: #4ecca3;
+        color: #06d6a0;
         font-weight: 700;
         letter-spacing: 2px;
     }

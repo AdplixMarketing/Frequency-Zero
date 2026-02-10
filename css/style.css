@@ -1,17 +1,17 @@
 /* ===== CSS Variables ===== */
 :root {
-    --bg-primary: #0f0f0f;
-    --bg-secondary: #1a1a2e;
-    --bg-card: #16213e;
-    --accent-primary: #e94560;
-    --accent-secondary: #0f3460;
-    --success: #4ecca3;
-    --warning: #ffc107;
+    --bg-primary: #1e1e2e;
+    --bg-secondary: #2a2a3e;
+    --bg-card: #353548;
+    --accent-primary: #ff6b9d;
+    --accent-secondary: #ffd166;
+    --success: #06d6a0;
+    --warning: #ffd166;
     --error: #ff6b6b;
-    --text-primary: #eaeaea;
-    --text-secondary: #a0a0a0;
-    --text-muted: #666;
-    --border-color: #2a2a4a;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8d0;
+    --text-muted: #6b6b80;
+    --border-color: #3d3d52;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
     --radius-sm: 8px;
@@ -461,7 +461,7 @@ body {
 }
 
 .submit-btn:hover {
-    background: #d63850;
+    background: #ff5286;
     transform: scale(1.05);
 }
 
@@ -930,7 +930,7 @@ body {
 }
 
 .result-btn:hover {
-    background: #d63850;
+    background: #ff5286;
     transform: translateY(-2px);
 }
 

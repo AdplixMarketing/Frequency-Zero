@@ -194,13 +194,13 @@ energyStyles.textContent = `
         top: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(135deg, #ffc107, #ff9800);
-        color: #000;
+        background: linear-gradient(135deg, #ffd166, #ffb830);
+        color: #1e1e2e;
         padding: 12px 24px;
         border-radius: 50px;
         font-weight: 600;
         z-index: 10000;
-        box-shadow: 0 4px 20px rgba(255, 193, 7, 0.4);
+        box-shadow: 0 4px 20px rgba(255, 209, 102, 0.4);
         display: flex;
         align-items: center;
         gap: 8px;

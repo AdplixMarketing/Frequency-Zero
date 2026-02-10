@@ -176,17 +176,17 @@ shareStyles.textContent = `
         top: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(135deg, #0f3460, #16213e);
+        background: linear-gradient(135deg, #2a2a3e, #353548);
         color: white;
         padding: 12px 24px;
         border-radius: 50px;
         font-weight: 600;
         z-index: 10000;
-        box-shadow: 0 4px 20px rgba(15, 52, 96, 0.4);
+        box-shadow: 0 4px 20px rgba(42, 42, 62, 0.4);
         display: flex;
         align-items: center;
         gap: 8px;
-        border: 1px solid #e94560;
+        border: 1px solid #ff6b9d;
     }
 
     .share-notification.fade-out {

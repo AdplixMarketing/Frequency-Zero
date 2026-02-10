@@ -101,14 +101,14 @@ function getDailyPuzzles() {
 }
 ```
 
-## Color Scheme
+## Color Scheme (Candy Pop)
 
-- Background: `#0f0f0f`
-- Card Background: `#1a1a2e`
-- Accent Primary: `#e94560` (pink-red)
-- Accent Secondary: `#0f3460` (deep blue)
-- Success: `#4ecca3` (teal green)
-- Text: `#eaeaea`
+- Background: `#1e1e2e` (soft dark)
+- Card Background: `#2a2a3e` (muted purple)
+- Accent Primary: `#ff6b9d` (candy pink)
+- Accent Secondary: `#ffd166` (sunny yellow)
+- Success: `#06d6a0` (mint green)
+- Text: `#ffffff`
 
 ## Sharing
 

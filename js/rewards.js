@@ -236,7 +236,7 @@ const Rewards = {
     // ===== Confetti Effect =====
 
     createConfetti() {
-        const colors = ['#e94560', '#4ecca3', '#ffc107', '#00d9ff', '#ff6b6b'];
+        const colors = ['#ff6b9d', '#06d6a0', '#ffd166', '#7c3aed', '#ff5286'];
         const shapes = ['square', 'circle', 'triangle'];
 
         for (let i = 0; i < 50; i++) {
@@ -272,13 +272,13 @@ rewardStyles.textContent = `
         top: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(135deg, #4ecca3, #3db891);
+        background: linear-gradient(135deg, #06d6a0, #05c090);
         color: white;
         padding: 12px 24px;
         border-radius: 50px;
         font-weight: 600;
         z-index: 10000;
-        box-shadow: 0 4px 20px rgba(78, 204, 163, 0.4);
+        box-shadow: 0 4px 20px rgba(6, 214, 160, 0.4);
         display: flex;
         align-items: center;
         gap: 8px;
