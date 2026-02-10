@@ -433,9 +433,6 @@ const Game = {
         const result = Hints.useHint(this.currentPuzzle, 'letter', freeHint);
         if (result) {
             this.hintsUsedThisPuzzle++;
-
-            // Show hint display if not already visible
-            Hints.showHintDisplay(this.currentPuzzle);
         }
     },
 

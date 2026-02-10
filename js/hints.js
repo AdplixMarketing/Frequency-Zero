@@ -145,7 +145,10 @@ const Hints = {
         const hintDisplay = document.getElementById('hint-display');
         if (!hintDisplay) return;
 
-        this.setAnswer(puzzle.answer);
+        // Only set answer if not already set (don't reset reveals)
+        if (!this.currentAnswer) {
+            this.setAnswer(puzzle.answer);
+        }
         hintDisplay.classList.add('visible');
         this.updateHintDisplay();
     },
