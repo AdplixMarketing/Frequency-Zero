@@ -301,10 +301,10 @@ document.addEventListener('visibilitychange', () => {
         // Check for daily reset
         Energy.checkDailyRefill();
 
-        // Check if daily puzzles need to reset (new day)
+        // Check if daily puzzles need to reset (new day in Chicago time)
         if (Game.currentMode === 'daily') {
             const progress = Storage.getDailyProgress();
-            const today = Storage.getDateString(new Date());
+            const today = Storage.getChicagoDateString();
 
             // If the stored progress is from a different day, reload
             if (progress.date !== today) {

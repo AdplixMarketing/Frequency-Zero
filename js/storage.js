@@ -185,8 +185,17 @@ const Storage = {
 
     // ===== Daily Progress =====
 
+    // Get current date string in Chicago timezone
+    getChicagoDateString() {
+        const date = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    },
+
     getDailyProgress() {
-        const today = this.getDateString(new Date());
+        const today = this.getChicagoDateString();
         const data = this.get('daily_' + today, {
             date: today,
             puzzles: [null, null, null], // Results for each puzzle
@@ -200,7 +209,7 @@ const Storage = {
     },
 
     setDailyProgress(progress) {
-        const today = this.getDateString(new Date());
+        const today = this.getChicagoDateString();
         return this.set('daily_' + today, progress);
     },
 

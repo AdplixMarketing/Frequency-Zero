@@ -5,11 +5,26 @@
 
 const Daily = {
     START_DATE: new Date('2024-01-01'),
+    TIMEZONE: 'America/Chicago', // Central Time
 
     // ===== Core Methods =====
 
+    // Get current date in Chicago timezone
+    getChicagoDate() {
+        return new Date(new Date().toLocaleString('en-US', { timeZone: this.TIMEZONE }));
+    },
+
+    // Get date string in Chicago timezone (YYYY-MM-DD)
+    getChicagoDateString() {
+        const date = this.getChicagoDate();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    },
+
     getDayIndex() {
-        const today = new Date();
+        const today = this.getChicagoDate();
         today.setHours(0, 0, 0, 0);
         const start = new Date(this.START_DATE);
         start.setHours(0, 0, 0, 0);
@@ -223,12 +238,16 @@ const Daily = {
     // ===== Time Until Reset =====
 
     getTimeUntilReset() {
-        const now = new Date();
-        const tomorrow = new Date(now);
-        tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
-        tomorrow.setUTCHours(0, 0, 0, 0);
+        // Get current Chicago time
+        const chicagoNow = this.getChicagoDate();
 
-        return tomorrow - now;
+        // Calculate midnight tonight in Chicago
+        const chicagoMidnight = new Date(chicagoNow);
+        chicagoMidnight.setDate(chicagoMidnight.getDate() + 1);
+        chicagoMidnight.setHours(0, 0, 0, 0);
+
+        // Calculate difference
+        return chicagoMidnight - chicagoNow;
     },
 
     formatTimeRemaining(ms) {
