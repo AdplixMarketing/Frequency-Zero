@@ -300,6 +300,18 @@ document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
         // Check for daily reset
         Energy.checkDailyRefill();
+
+        // Check if daily puzzles need to reset (new day)
+        if (Game.currentMode === 'daily') {
+            const progress = Storage.getDailyProgress();
+            const today = Storage.getDateString(new Date());
+
+            // If the stored progress is from a different day, reload
+            if (progress.date !== today) {
+                Game.loadPuzzle();
+                Daily.updateProgressUI();
+            }
+        }
     }
 });
 
