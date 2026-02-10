@@ -9,6 +9,9 @@ const App = {
     init() {
         console.log('🎯 Decodji - Initializing...');
 
+        // Check if day has changed since last visit (force daily reset)
+        this.checkDayChange();
+
         // Initialize all systems
         Energy.init();
         Hints.init();
@@ -32,6 +35,19 @@ const App = {
         }
 
         console.log('✅ Decodji - Ready!');
+    },
+
+    checkDayChange() {
+        const today = Storage.getChicagoDateString();
+        const lastVisit = Storage.get('last_visit_date', null);
+
+        // Save today's date
+        Storage.set('last_visit_date', today);
+
+        // If it's a new day, log it
+        if (lastVisit && lastVisit !== today) {
+            console.log('🌅 New day detected! Daily challenge reset.');
+        }
     },
 
     // ===== Navigation =====

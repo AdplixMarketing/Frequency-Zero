@@ -196,6 +196,7 @@ const Storage = {
 
     getDailyProgress() {
         const today = this.getChicagoDateString();
+        console.log('📅 Daily progress for Chicago date:', today);
         const data = this.get('daily_' + today, {
             date: today,
             puzzles: [null, null, null], // Results for each puzzle
