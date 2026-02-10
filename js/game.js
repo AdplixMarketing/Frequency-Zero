@@ -427,7 +427,10 @@ const Game = {
     useHint() {
         if (!this.isPlaying || !this.currentPuzzle) return;
 
-        const result = Hints.useHint(this.currentPuzzle, 'letter');
+        // Practice mode has unlimited hints
+        const freeHint = this.currentMode === 'practice';
+
+        const result = Hints.useHint(this.currentPuzzle, 'letter', freeHint);
         if (result) {
             this.hintsUsedThisPuzzle++;
 

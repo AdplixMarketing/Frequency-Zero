@@ -175,14 +175,17 @@ const Hints = {
 
     // ===== Use Hint (Main Method) =====
 
-    useHint(puzzle, type = 'letter') {
-        if (!this.hasHints()) {
-            this.showNoHintsMessage();
-            return null;
-        }
+    useHint(puzzle, type = 'letter', free = false) {
+        // If not a free hint, check and consume hint tokens
+        if (!free) {
+            if (!this.hasHints()) {
+                this.showNoHintsMessage();
+                return null;
+            }
 
-        if (!this.use()) {
-            return null;
+            if (!this.use()) {
+                return null;
+            }
         }
 
         if (type === 'letter') {
@@ -199,7 +202,8 @@ const Hints = {
                     hintDisplay.classList.add('visible');
                 }
                 this.updateHintDisplay();
-                this.showHintNotification(`Letter revealed: ${revealed.char}`);
+                const freeText = free ? ' (free)' : '';
+                this.showHintNotification(`Letter revealed: ${revealed.char}${freeText}`);
             } else {
                 // All letters revealed
                 this.showHintNotification(`All letters already revealed!`);
