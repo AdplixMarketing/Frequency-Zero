@@ -90,7 +90,7 @@ const Leaderboard = {
         const existing = Storage.getLeaderboardScores();
 
         // Generate fake entries for each period if needed
-        ['daily', 'weekly', 'monthly', 'alltime'].forEach(period => {
+        ['daily', 'weekly', 'monthly'].forEach(period => {
             if (!existing[period]) existing[period] = [];
             if (existing[period].length < 20) {
                 const fakeEntries = this.createFakeEntries(period);
@@ -111,8 +111,7 @@ const Leaderboard = {
         const ranges = {
             daily: { min: 100, max: 750 },
             weekly: { min: 500, max: 5000 },
-            monthly: { min: 2000, max: 20000 },
-            alltime: { min: 5000, max: 100000 }
+            monthly: { min: 2000, max: 20000 }
         };
 
         const range = ranges[period] || ranges.daily;
@@ -265,10 +264,6 @@ const Leaderboard = {
         }
         Storage.set('monthly_score', monthlyData);
         this.updatePeriodScore('monthly', playerName, monthlyData.score, true);
-
-        // Update all-time
-        const stats = Storage.getStats();
-        this.updatePeriodScore('alltime', playerName, stats.totalScore, true);
 
         this.render();
     },

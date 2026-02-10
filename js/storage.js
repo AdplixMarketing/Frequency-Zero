@@ -246,6 +246,9 @@ const Storage = {
     // ===== Statistics =====
 
     getStats() {
+        // Check for monthly reset
+        this.checkMonthlyStatsReset();
+
         return this.get('stats', {
             puzzlesPlayed: 0,
             puzzlesSolved: 0,
@@ -263,6 +266,35 @@ const Storage = {
             averageTime: 0,
             totalTime: 0
         });
+    },
+
+    checkMonthlyStatsReset() {
+        const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+        const currentMonth = now.getFullYear() * 12 + now.getMonth();
+        const lastStatsMonth = this.get('stats_month', null);
+
+        if (lastStatsMonth !== currentMonth) {
+            console.log('📊 Resetting monthly stats');
+            // Reset stats
+            this.set('stats', {
+                puzzlesPlayed: 0,
+                puzzlesSolved: 0,
+                totalScore: 0,
+                bestStreak: 0,
+                noHintSolves: 0,
+                categories: {
+                    movies: { played: 0, solved: 0 },
+                    tvshows: { played: 0, solved: 0 },
+                    songs: { played: 0, solved: 0 },
+                    phrases: { played: 0, solved: 0 },
+                    brands: { played: 0, solved: 0 },
+                    places: { played: 0, solved: 0 }
+                },
+                averageTime: 0,
+                totalTime: 0
+            });
+            this.set('stats_month', currentMonth);
+        }
     },
 
     recordPuzzle(puzzle, solved, score, time, hintsUsed) {
@@ -345,8 +377,7 @@ const Storage = {
         return this.get('leaderboard', {
             daily: [],
             weekly: [],
-            monthly: [],
-            alltime: []
+            monthly: []
         });
     },
 
