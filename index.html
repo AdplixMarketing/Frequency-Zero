@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequency Zero - Decode emojis into movies, songs, phrases & brands. Daily challenges, streaks, and leaderboards!">
+    <meta name="theme-color" content="#0f0f0f">
+    <title>Frequency Zero - Emoji Decoder Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ad Banner - Top -->
+    <div class="ad-container ad-top" id="ad-top">
+        <div class="ad-placeholder">Advertisement</div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="header-left">
+                <h1 class="logo">FREQUENCY<span class="logo-accent">ZERO</span></h1>
+            </div>
+            <div class="header-right">
+                <div class="stat-badge energy-badge" id="energy-display">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-value" id="energy-value">10</span>
+                </div>
+                <div class="stat-badge hints-badge" id="hints-display">
+                    <span class="stat-icon">💡</span>
+                    <span class="stat-value" id="hints-value">5</span>
+                </div>
+                <div class="stat-badge streak-badge" id="streak-display">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-value" id="streak-value">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="game">Play</button>
+            <button class="nav-tab" data-tab="leaderboard">Leaderboard</button>
+            <button class="nav-tab" data-tab="rewards">Rewards</button>
+            <button class="nav-tab" data-tab="stats">Stats</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Game Screen -->
+            <section class="screen game-screen active" id="game-screen">
+                <!-- Mode Toggle -->
+                <div class="mode-toggle">
+                    <button class="mode-btn active" data-mode="daily">Daily Challenge</button>
+                    <button class="mode-btn" data-mode="practice">Practice Mode</button>
+                </div>
+
+                <!-- Daily Progress -->
+                <div class="daily-progress" id="daily-progress">
+                    <div class="progress-dots">
+                        <span class="progress-dot" data-puzzle="0"></span>
+                        <span class="progress-dot" data-puzzle="1"></span>
+                        <span class="progress-dot" data-puzzle="2"></span>
+                    </div>
+                    <span class="progress-text" id="progress-text">Puzzle 1 of 3</span>
+                </div>
+
+                <!-- Category Badge -->
+                <div class="category-badge" id="category-badge">
+                    <span class="category-icon">🎬</span>
+                    <span class="category-name" id="category-name">Movies</span>
+                </div>
+
+                <!-- Emoji Display -->
+                <div class="emoji-display" id="emoji-display">
+                    <span class="emoji">🦁</span>
+                    <span class="emoji">👑</span>
+                </div>
+
+                <!-- Timer -->
+                <div class="timer-container" id="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-value" id="timer-value">0:00</span>
+                </div>
+
+                <!-- Answer Input -->
+                <div class="input-container">
+                    <input type="text"
+                           class="answer-input"
+                           id="answer-input"
+                           placeholder="Type your answer..."
+                           autocomplete="off"
+                           autocapitalize="off"
+                           spellcheck="false">
+                    <button class="submit-btn" id="submit-btn">→</button>
+                </div>
+
+                <!-- Hint Display -->
+                <div class="hint-display" id="hint-display"></div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn hint-btn" id="hint-btn">
+                        <span class="btn-icon">💡</span>
+                        <span class="btn-text">Hint</span>
+                    </button>
+                    <button class="action-btn skip-btn" id="skip-btn">
+                        <span class="btn-icon">⏭️</span>
+                        <span class="btn-text">Skip</span>
+                    </button>
+                    <button class="action-btn share-btn" id="share-btn">
+                        <span class="btn-icon">📤</span>
+                        <span class="btn-text">Share</span>
+                    </button>
+                </div>
+
+                <!-- Score Display -->
+                <div class="score-bar">
+                    <div class="score-item">
+                        <span class="score-label">Daily</span>
+                        <span class="score-value" id="daily-solved">0/3</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Score</span>
+                        <span class="score-value" id="current-score">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Streak</span>
+                        <span class="score-value" id="current-streak">🔥0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leaderboard Screen -->
+            <section class="screen leaderboard-screen" id="leaderboard-screen">
+                <div class="leaderboard-tabs">
+                    <button class="lb-tab active" data-period="daily">Daily</button>
+                    <button class="lb-tab" data-period="weekly">Weekly</button>
+                    <button class="lb-tab" data-period="alltime">All Time</button>
+                </div>
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard entries will be inserted here -->
+                </div>
+                <div class="your-rank" id="your-rank">
+                    <span class="rank-label">Your Rank:</span>
+                    <span class="rank-value" id="rank-value">#--</span>
+                </div>
+            </section>
+
+            <!-- Rewards Screen -->
+            <section class="screen rewards-screen" id="rewards-screen">
+                <h2 class="screen-title">Daily Rewards</h2>
+                <p class="rewards-subtitle">Come back every day to claim rewards!</p>
+                <div class="rewards-calendar" id="rewards-calendar">
+                    <!-- 7 day reward slots -->
+                </div>
+                <div class="streak-info">
+                    <span class="streak-icon">🔥</span>
+                    <span class="streak-text">Current Streak: <strong id="reward-streak">0 days</strong></span>
+                </div>
+            </section>
+
+            <!-- Stats Screen -->
+            <section class="screen stats-screen" id="stats-screen">
+                <h2 class="screen-title">Your Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-played">0</span>
+                        <span class="stat-label">Puzzles Played</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-solved">0</span>
+                        <span class="stat-label">Puzzles Solved</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-accuracy">0%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-best-streak">0</span>
+                        <span class="stat-label">Best Streak</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-total-score">0</span>
+                        <span class="stat-label">Total Score</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-no-hints">0</span>
+                        <span class="stat-label">No-Hint Solves</span>
+                    </div>
+                </div>
+                <div class="category-stats">
+                    <h3>Category Breakdown</h3>
+                    <div class="category-bars" id="category-bars">
+                        <!-- Category progress bars -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Ad Sidebar (Desktop) -->
+        <aside class="ad-sidebar" id="ad-sidebar">
+            <div class="ad-placeholder">Advertisement</div>
+        </aside>
+    </div>
+
+    <!-- Ad Banner - Bottom (Mobile) -->
+    <div class="ad-container ad-bottom" id="ad-bottom">
+        <div class="ad-placeholder">Advertisement</div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal" id="result-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content result-modal-content">
+            <div class="result-icon" id="result-icon">✅</div>
+            <h2 class="result-title" id="result-title">Correct!</h2>
+            <div class="result-answer">
+                <span class="answer-label">The answer was:</span>
+                <span class="answer-text" id="answer-reveal">The Lion King</span>
+            </div>
+            <div class="score-breakdown" id="score-breakdown">
+                <div class="score-row">
+                    <span>Base Points</span>
+                    <span id="base-points">+100</span>
+                </div>
+                <div class="score-row">
+                    <span>Time Bonus</span>
+                    <span id="time-bonus">+50</span>
+                </div>
+                <div class="score-row">
+                    <span>No-Hint Bonus</span>
+                    <span id="hint-bonus">+100</span>
+                </div>
+                <div class="score-row total">
+                    <span>Total</span>
+                    <span id="total-points">+250</span>
+                </div>
+            </div>
+            <div class="result-actions">
+                <button class="result-btn share-result-btn" id="share-result-btn">
+                    📤 Share Result
+                </button>
+                <button class="result-btn next-btn" id="next-btn">
+                    Next Puzzle →
+                </button>
+            </div>
+            <!-- Ad between puzzles -->
+            <div class="ad-container ad-interstitial" id="ad-interstitial">
+                <div class="ad-placeholder">Advertisement</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Complete Modal -->
+    <div class="modal" id="daily-complete-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content daily-complete-content">
+            <div class="complete-icon">🏆</div>
+            <h2>Daily Challenge Complete!</h2>
+            <div class="daily-summary">
+                <div class="summary-puzzles" id="summary-puzzles">
+                    <!-- Puzzle results -->
+                </div>
+                <div class="summary-total">
+                    <span>Total Score:</span>
+                    <span id="summary-score">0</span>
+                </div>
+                <div class="summary-streak">
+                    <span>Streak:</span>
+                    <span id="summary-streak">🔥0</span>
+                </div>
+            </div>
+            <div class="share-card" id="share-card">
+                <pre id="share-text"></pre>
+            </div>
+            <div class="complete-actions">
+                <button class="result-btn share-result-btn" id="share-daily-btn">
+                    📤 Share Results
+                </button>
+                <button class="result-btn" id="practice-btn">
+                    Practice Mode
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Claimed Modal -->
+    <div class="modal" id="reward-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content reward-modal-content">
+            <div class="reward-icon" id="reward-icon">🎁</div>
+            <h2>Reward Claimed!</h2>
+            <p class="reward-description" id="reward-description">+2 Energy</p>
+            <button class="result-btn" id="close-reward-btn">Awesome!</button>
+        </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div class="modal" id="tutorial-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content tutorial-content">
+            <h2>How to Play</h2>
+            <div class="tutorial-steps">
+                <div class="tutorial-step">
+                    <span class="step-icon">🎯</span>
+                    <p>Look at the emoji clues and guess what movie, song, phrase, or brand they represent!</p>
+                </div>
+                <div class="tutorial-step">
+                    <span class="step-icon">⌨️</span>
+                    <p>Type your answer and press Enter or tap the arrow button.</p>
+                </div>
+                <div class="tutorial-step">
+                    <span class="step-icon">💡</span>
+                    <p>Stuck? Use hints to reveal letters - but you'll earn fewer points!</p>
+                </div>
+                <div class="tutorial-step">
+                    <span class="step-icon">🔥</span>
+                    <p>Complete daily challenges to build your streak and earn bonus rewards!</p>
+                </div>
+                <div class="tutorial-step">
+                    <span class="step-icon">⚡</span>
+                    <p>Practice mode costs energy. Daily puzzles are always FREE!</p>
+                </div>
+            </div>
+            <button class="result-btn" id="close-tutorial-btn">Let's Play!</button>
+        </div>
+    </div>
+
+    <!-- Bonus Energy Modal -->
+    <div class="modal" id="bonus-energy-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content bonus-energy-content">
+            <div class="bonus-icon">⚡</div>
+            <h2>Need More Energy?</h2>
+            <p>Watch a short video to get +3 bonus energy!</p>
+            <div class="bonus-actions">
+                <button class="result-btn watch-ad-btn" id="watch-ad-btn">
+                    ▶️ Watch Video
+                </button>
+                <button class="result-btn secondary" id="no-thanks-btn">
+                    No Thanks
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/puzzles.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/energy.js"></script>
+    <script src="js/hints.js"></script>
+    <script src="js/daily.js"></script>
+    <script src="js/rewards.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/share.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

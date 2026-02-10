@@ -1,0 +1,444 @@
+/* ===== Mobile First (Base) ===== */
+/* Styles in style.css are mobile-first */
+
+/* ===== Small Mobile (320px - 374px) ===== */
+@media (max-width: 374px) {
+    html {
+        font-size: 14px;
+    }
+
+    .game-header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .header-right {
+        justify-content: center;
+    }
+
+    .stat-badge {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+
+    .nav-tabs {
+        gap: 2px;
+    }
+
+    .nav-tab {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    .emoji-display {
+        gap: 8px;
+        padding: 16px;
+    }
+
+    .emoji {
+        font-size: 2.5rem;
+    }
+
+    .rewards-calendar {
+        gap: 4px;
+    }
+
+    .reward-day-icon {
+        font-size: 1.25rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Standard Mobile (375px - 413px) ===== */
+@media (min-width: 375px) and (max-width: 413px) {
+    .emoji {
+        font-size: 2.75rem;
+    }
+}
+
+/* ===== Large Mobile (414px - 767px) ===== */
+@media (min-width: 414px) and (max-width: 767px) {
+    .emoji {
+        font-size: 3rem;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+}
+
+/* ===== Tablet (768px - 1023px) ===== */
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    .app-container {
+        max-width: 700px;
+        padding: 0 24px;
+    }
+
+    .game-header {
+        padding: 20px 0;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .stat-badge {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+
+    .nav-tab {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .emoji-display {
+        min-height: 150px;
+        padding: 32px;
+        gap: 24px;
+    }
+
+    .emoji {
+        font-size: 4rem;
+    }
+
+    .answer-input {
+        padding: 18px 24px;
+        font-size: 1.125rem;
+    }
+
+    .submit-btn {
+        width: 64px;
+        height: 64px;
+        font-size: 1.75rem;
+    }
+
+    .action-btn {
+        padding: 16px 28px;
+        font-size: 0.875rem;
+    }
+
+    .btn-icon {
+        font-size: 1.75rem;
+    }
+
+    .score-bar {
+        padding: 20px 32px;
+    }
+
+    .score-value {
+        font-size: 1.5rem;
+    }
+
+    .rewards-calendar {
+        gap: 12px;
+    }
+
+    .reward-day-icon {
+        font-size: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .modal-content {
+        max-width: 480px;
+        padding: 40px;
+    }
+
+    .result-icon {
+        font-size: 5rem;
+    }
+
+    /* Hide mobile bottom ad */
+    .ad-bottom {
+        display: none;
+    }
+
+    .app-container {
+        padding-bottom: 40px;
+    }
+}
+
+/* ===== Desktop (1024px - 1365px) ===== */
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 800px;
+    }
+
+    .ad-top {
+        height: 90px;
+        max-width: 728px;
+    }
+
+    /* Show sidebar ad on desktop */
+    .ad-sidebar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .emoji-display {
+        min-height: 180px;
+    }
+
+    .emoji {
+        font-size: 4.5rem;
+    }
+
+    .leaderboard-list {
+        max-height: 500px;
+    }
+
+    .lb-entry {
+        padding: 16px 24px;
+    }
+}
+
+/* ===== Large Desktop (1366px+) ===== */
+@media (min-width: 1366px) {
+    html {
+        font-size: 18px;
+    }
+
+    .app-container {
+        max-width: 900px;
+    }
+
+    .ad-sidebar {
+        right: calc((100vw - 900px) / 4);
+    }
+
+    .emoji {
+        font-size: 5rem;
+    }
+
+    .modal-content {
+        max-width: 520px;
+    }
+}
+
+/* ===== Extra Large Desktop (1920px+) ===== */
+@media (min-width: 1920px) {
+    .app-container {
+        max-width: 1000px;
+    }
+
+    .ad-sidebar {
+        right: calc((100vw - 1000px) / 4);
+        width: 336px;
+        height: 640px;
+    }
+}
+
+/* ===== Height Adjustments ===== */
+
+/* Short screens - compact layout */
+@media (max-height: 600px) {
+    .game-header {
+        padding: 8px 0;
+    }
+
+    .nav-tabs {
+        padding: 8px 0;
+    }
+
+    .screen {
+        padding: 12px 0;
+    }
+
+    .emoji-display {
+        min-height: 80px;
+        padding: 16px;
+    }
+
+    .emoji {
+        font-size: 2.5rem;
+    }
+
+    .mode-toggle {
+        margin-bottom: 12px;
+    }
+
+    .daily-progress {
+        margin-bottom: 8px;
+    }
+
+    .category-badge {
+        margin-bottom: 12px;
+    }
+
+    .action-buttons {
+        margin-bottom: 12px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===== Landscape Mobile ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .app-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 100%;
+    }
+
+    .game-header {
+        grid-column: 1 / -1;
+    }
+
+    .nav-tabs {
+        grid-column: 1 / -1;
+    }
+
+    .emoji-display {
+        min-height: 60px;
+    }
+
+    .emoji {
+        font-size: 2rem;
+    }
+
+    .ad-top, .ad-bottom {
+        display: none;
+    }
+}
+
+/* ===== Dark Mode Preference (system) ===== */
+@media (prefers-color-scheme: light) {
+    /* Keep dark theme as the game is designed for it */
+    /* But we could add light mode support here if needed */
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .emoji {
+        animation: none;
+    }
+
+    .animate-bounce,
+    .animate-shake,
+    .animate-pulse,
+    .animate-glow,
+    .animate-spin,
+    .animate-float,
+    .animate-fire,
+    .animate-trophy {
+        animation: none;
+    }
+}
+
+/* ===== High Contrast Mode ===== */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #fff;
+        --text-primary: #fff;
+        --text-secondary: #ddd;
+    }
+
+    .answer-input,
+    .action-btn,
+    .nav-tab,
+    .mode-btn {
+        border-width: 2px;
+    }
+}
+
+/* ===== Touch Devices ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    .action-btn {
+        min-width: 80px;
+        min-height: 60px;
+    }
+
+    .nav-tab {
+        min-height: 44px;
+    }
+
+    .submit-btn {
+        min-width: 56px;
+        min-height: 56px;
+    }
+
+    /* Remove hover effects */
+    .action-btn:hover,
+    .nav-tab:hover,
+    .mode-btn:hover {
+        transform: none;
+    }
+
+    /* Active states instead */
+    .action-btn:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    .nav-tab:active,
+    .mode-btn:active {
+        opacity: 0.8;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .ad-container,
+    .ad-sidebar,
+    .action-buttons,
+    .nav-tabs,
+    .modal {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .app-container {
+        max-width: 100%;
+    }
+}
+
+/* ===== Safe Area Insets (notched devices) ===== */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .ad-top {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .ad-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(100px + env(safe-area-inset-bottom));
+    }
+
+    .app-container {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+    }
+}

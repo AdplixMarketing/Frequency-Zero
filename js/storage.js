@@ -1,0 +1,435 @@
+/**
+ * LocalStorage Wrapper for Frequency Zero
+ * Handles all persistent data storage
+ */
+
+const Storage = {
+    PREFIX: 'fz_',
+
+    // ===== Core Methods =====
+
+    get(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(this.PREFIX + key);
+            if (item === null) return defaultValue;
+            return JSON.parse(item);
+        } catch (e) {
+            console.error('Storage get error:', e);
+            return defaultValue;
+        }
+    },
+
+    set(key, value) {
+        try {
+            localStorage.setItem(this.PREFIX + key, JSON.stringify(value));
+            return true;
+        } catch (e) {
+            console.error('Storage set error:', e);
+            return false;
+        }
+    },
+
+    remove(key) {
+        try {
+            localStorage.removeItem(this.PREFIX + key);
+            return true;
+        } catch (e) {
+            console.error('Storage remove error:', e);
+            return false;
+        }
+    },
+
+    clear() {
+        try {
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith(this.PREFIX)) {
+                    localStorage.removeItem(key);
+                }
+            });
+            return true;
+        } catch (e) {
+            console.error('Storage clear error:', e);
+            return false;
+        }
+    },
+
+    // ===== Player Profile =====
+
+    getProfile() {
+        return this.get('profile', {
+            name: 'Player',
+            createdAt: Date.now(),
+            lastActive: Date.now()
+        });
+    },
+
+    setProfile(profile) {
+        return this.set('profile', {
+            ...this.getProfile(),
+            ...profile,
+            lastActive: Date.now()
+        });
+    },
+
+    // ===== Energy System =====
+
+    getEnergy() {
+        const data = this.get('energy', {
+            current: 10,
+            max: 10,
+            lastRefill: Date.now()
+        });
+
+        // Check for daily refill
+        const now = new Date();
+        const lastRefill = new Date(data.lastRefill);
+
+        // Refill at midnight UTC
+        if (this.isNewDay(lastRefill, now)) {
+            data.current = data.max;
+            data.lastRefill = now.getTime();
+            this.set('energy', data);
+        }
+
+        return data;
+    },
+
+    setEnergy(amount) {
+        const data = this.getEnergy();
+        data.current = Math.max(0, Math.min(amount, data.max + 10)); // Allow up to 10 bonus
+        this.set('energy', data);
+        return data.current;
+    },
+
+    addEnergy(amount) {
+        const data = this.getEnergy();
+        return this.setEnergy(data.current + amount);
+    },
+
+    useEnergy(amount = 1) {
+        const data = this.getEnergy();
+        if (data.current >= amount) {
+            this.setEnergy(data.current - amount);
+            return true;
+        }
+        return false;
+    },
+
+    // ===== Hints System =====
+
+    getHints() {
+        return this.get('hints', 5);
+    },
+
+    setHints(amount) {
+        const hints = Math.max(0, amount);
+        this.set('hints', hints);
+        return hints;
+    },
+
+    addHints(amount) {
+        return this.setHints(this.getHints() + amount);
+    },
+
+    useHint() {
+        const hints = this.getHints();
+        if (hints > 0) {
+            this.setHints(hints - 1);
+            return true;
+        }
+        return false;
+    },
+
+    // ===== Streak System =====
+
+    getStreak() {
+        const data = this.get('streak', {
+            current: 0,
+            best: 0,
+            lastCompletedDate: null
+        });
+
+        // Check if streak should reset
+        if (data.lastCompletedDate) {
+            const lastDate = new Date(data.lastCompletedDate);
+            const today = new Date();
+            const daysDiff = this.getDaysDifference(lastDate, today);
+
+            if (daysDiff > 1) {
+                // Streak broken - missed a day
+                data.current = 0;
+                this.set('streak', data);
+            }
+        }
+
+        return data;
+    },
+
+    incrementStreak() {
+        const data = this.getStreak();
+        const today = this.getDateString(new Date());
+
+        // Don't increment if already completed today
+        if (data.lastCompletedDate === today) {
+            return data;
+        }
+
+        data.current++;
+        data.best = Math.max(data.best, data.current);
+        data.lastCompletedDate = today;
+        this.set('streak', data);
+
+        return data;
+    },
+
+    // ===== Daily Progress =====
+
+    getDailyProgress() {
+        const today = this.getDateString(new Date());
+        const data = this.get('daily_' + today, {
+            date: today,
+            puzzles: [null, null, null], // Results for each puzzle
+            hintsUsed: [0, 0, 0],
+            times: [null, null, null],
+            scores: [0, 0, 0],
+            completed: false,
+            currentIndex: 0
+        });
+        return data;
+    },
+
+    setDailyProgress(progress) {
+        const today = this.getDateString(new Date());
+        return this.set('daily_' + today, progress);
+    },
+
+    recordDailyPuzzle(index, result) {
+        const progress = this.getDailyProgress();
+        progress.puzzles[index] = result.solved;
+        progress.hintsUsed[index] = result.hintsUsed;
+        progress.times[index] = result.time;
+        progress.scores[index] = result.score;
+        progress.currentIndex = Math.min(index + 1, 2);
+
+        if (index === 2) {
+            progress.completed = true;
+        }
+
+        this.setDailyProgress(progress);
+        return progress;
+    },
+
+    // ===== Statistics =====
+
+    getStats() {
+        return this.get('stats', {
+            puzzlesPlayed: 0,
+            puzzlesSolved: 0,
+            totalScore: 0,
+            bestStreak: 0,
+            noHintSolves: 0,
+            categories: {
+                movies: { played: 0, solved: 0 },
+                tvshows: { played: 0, solved: 0 },
+                songs: { played: 0, solved: 0 },
+                phrases: { played: 0, solved: 0 },
+                brands: { played: 0, solved: 0 },
+                places: { played: 0, solved: 0 }
+            },
+            averageTime: 0,
+            totalTime: 0
+        });
+    },
+
+    recordPuzzle(puzzle, solved, score, time, hintsUsed) {
+        const stats = this.getStats();
+
+        stats.puzzlesPlayed++;
+        if (solved) {
+            stats.puzzlesSolved++;
+            stats.totalScore += score;
+            if (hintsUsed === 0) {
+                stats.noHintSolves++;
+            }
+        }
+
+        // Category stats
+        if (stats.categories[puzzle.category]) {
+            stats.categories[puzzle.category].played++;
+            if (solved) {
+                stats.categories[puzzle.category].solved++;
+            }
+        }
+
+        // Time tracking
+        stats.totalTime += time;
+        stats.averageTime = Math.round(stats.totalTime / stats.puzzlesPlayed);
+
+        // Streak
+        const streak = this.getStreak();
+        stats.bestStreak = streak.best;
+
+        this.set('stats', stats);
+        return stats;
+    },
+
+    // ===== Daily Rewards =====
+
+    getRewards() {
+        return this.get('rewards', {
+            lastClaimDate: null,
+            claimedDays: [],
+            consecutiveDays: 0
+        });
+    },
+
+    claimReward(dayNumber) {
+        const rewards = this.getRewards();
+        const today = this.getDateString(new Date());
+
+        // Check if already claimed today
+        if (rewards.claimedDays.includes(today)) {
+            return null;
+        }
+
+        // Update rewards
+        rewards.lastClaimDate = today;
+        rewards.claimedDays.push(today);
+
+        // Calculate consecutive days
+        if (rewards.claimedDays.length > 1) {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = this.getDateString(yesterday);
+
+            if (rewards.claimedDays.includes(yesterdayStr)) {
+                rewards.consecutiveDays++;
+            } else {
+                rewards.consecutiveDays = 1;
+            }
+        } else {
+            rewards.consecutiveDays = 1;
+        }
+
+        this.set('rewards', rewards);
+        return rewards;
+    },
+
+    // ===== Leaderboard =====
+
+    getLeaderboardScores() {
+        return this.get('leaderboard', {
+            daily: [],
+            weekly: [],
+            alltime: []
+        });
+    },
+
+    addLeaderboardScore(score, period = 'daily') {
+        const scores = this.getLeaderboardScores();
+        const today = this.getDateString(new Date());
+
+        const entry = {
+            name: this.getProfile().name,
+            score,
+            date: today,
+            you: true
+        };
+
+        scores[period].push(entry);
+        scores[period].sort((a, b) => b.score - a.score);
+        scores[period] = scores[period].slice(0, 100);
+
+        this.set('leaderboard', scores);
+        return scores;
+    },
+
+    // ===== Solved Puzzles Tracking =====
+
+    getSolvedPuzzles() {
+        return this.get('solved', []);
+    },
+
+    markPuzzleSolved(puzzleId) {
+        const solved = this.getSolvedPuzzles();
+        if (!solved.includes(puzzleId)) {
+            solved.push(puzzleId);
+            this.set('solved', solved);
+        }
+        return solved;
+    },
+
+    isPuzzleSolved(puzzleId) {
+        return this.getSolvedPuzzles().includes(puzzleId);
+    },
+
+    // ===== Tutorial =====
+
+    hasSeeenTutorial() {
+        return this.get('tutorial_seen', false);
+    },
+
+    markTutorialSeen() {
+        return this.set('tutorial_seen', true);
+    },
+
+    // ===== Utility Methods =====
+
+    getDateString(date) {
+        return date.toISOString().split('T')[0];
+    },
+
+    isNewDay(lastDate, currentDate) {
+        const last = new Date(lastDate);
+        const current = new Date(currentDate);
+
+        return last.toDateString() !== current.toDateString();
+    },
+
+    getDaysDifference(date1, date2) {
+        const d1 = new Date(date1);
+        const d2 = new Date(date2);
+
+        // Reset time to midnight for accurate day comparison
+        d1.setHours(0, 0, 0, 0);
+        d2.setHours(0, 0, 0, 0);
+
+        const diffTime = Math.abs(d2 - d1);
+        return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    },
+
+    // ===== Export/Import =====
+
+    exportData() {
+        const data = {};
+        const keys = Object.keys(localStorage);
+
+        keys.forEach(key => {
+            if (key.startsWith(this.PREFIX)) {
+                const shortKey = key.replace(this.PREFIX, '');
+                data[shortKey] = this.get(shortKey);
+            }
+        });
+
+        return JSON.stringify(data, null, 2);
+    },
+
+    importData(jsonString) {
+        try {
+            const data = JSON.parse(jsonString);
+
+            for (const key in data) {
+                this.set(key, data[key]);
+            }
+
+            return true;
+        } catch (e) {
+            console.error('Import error:', e);
+            return false;
+        }
+    }
+};
+
+// Export for use
+window.Storage = Storage;
