@@ -494,16 +494,56 @@ const Game = {
         }
 
         // Update score breakdown
-        if (correct) {
-            document.getElementById('base-points').textContent = `+${scoreData.base}`;
-            document.getElementById('time-bonus').textContent = scoreData.timeBonus > 0 ? `+${scoreData.timeBonus}` : '-';
-            document.getElementById('hint-bonus').textContent = scoreData.noHintBonus > 0 ? `+${scoreData.noHintBonus}` : `-${scoreData.hintPenalty}`;
-            document.getElementById('total-points').textContent = `+${scoreData.total}`;
-        } else {
-            document.getElementById('base-points').textContent = '0';
-            document.getElementById('time-bonus').textContent = '-';
-            document.getElementById('hint-bonus').textContent = '-';
-            document.getElementById('total-points').textContent = '0';
+        const breakdownEl = document.getElementById('score-breakdown');
+        if (breakdownEl) {
+            if (correct) {
+                let rows = [];
+
+                // Base points
+                rows.push(`<div class="score-row"><span>Base Points</span><span>+${scoreData.base}</span></div>`);
+
+                // Time bonus (only if earned)
+                if (scoreData.timeBonus > 0) {
+                    rows.push(`<div class="score-row"><span>${scoreData.timeLabel}</span><span class="bonus">+${scoreData.timeBonus}</span></div>`);
+                }
+
+                // Hints: either bonus or penalty
+                if (scoreData.noHintBonus > 0) {
+                    rows.push(`<div class="score-row"><span>No-Hint Bonus</span><span class="bonus">+${scoreData.noHintBonus}</span></div>`);
+                } else if (scoreData.hintPenalty > 0) {
+                    rows.push(`<div class="score-row"><span>Hint Penalty (${scoreData.hintsUsed} used)</span><span class="penalty">-${scoreData.hintPenalty}</span></div>`);
+                }
+
+                // Subtotal if multipliers apply
+                if (scoreData.totalMultiplier > 1) {
+                    rows.push(`<div class="score-row subtotal"><span>Subtotal</span><span>${scoreData.subtotal}</span></div>`);
+
+                    // Difficulty multiplier (only if not easy)
+                    if (scoreData.difficultyMultiplier > 1) {
+                        rows.push(`<div class="score-row"><span>${scoreData.difficultyLabel}</span><span class="multiplier">×${scoreData.difficultyMultiplier}</span></div>`);
+                    }
+
+                    // Streak multiplier (only if > 1)
+                    if (scoreData.streakMultiplier > 1) {
+                        rows.push(`<div class="score-row"><span>Streak Bonus</span><span class="multiplier">×${scoreData.streakMultiplier.toFixed(1)}</span></div>`);
+                    }
+
+                    // Reward multiplier (only if active)
+                    if (scoreData.rewardMultiplier > 1) {
+                        rows.push(`<div class="score-row"><span>Score Boost Active</span><span class="multiplier">×${scoreData.rewardMultiplier}</span></div>`);
+                    }
+                }
+
+                // Total
+                rows.push(`<div class="score-row total"><span>Total</span><span>+${scoreData.total}</span></div>`);
+
+                breakdownEl.innerHTML = rows.join('');
+            } else {
+                breakdownEl.innerHTML = `
+                    <div class="score-row"><span>Base Points</span><span>0</span></div>
+                    <div class="score-row total"><span>Total</span><span>0</span></div>
+                `;
+            }
         }
 
         // Update next button text

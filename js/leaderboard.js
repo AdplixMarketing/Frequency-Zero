@@ -240,12 +240,16 @@ const Leaderboard = {
 
         // Time bonus
         let timeBonus = 0;
+        let timeLabel = '';
         if (timeSeconds < 10) {
             timeBonus = 50;
+            timeLabel = 'Speed Bonus (under 10s)';
         } else if (timeSeconds < 30) {
             timeBonus = 30;
+            timeLabel = 'Speed Bonus (under 30s)';
         } else if (timeSeconds < 60) {
             timeBonus = 10;
+            timeLabel = 'Speed Bonus (under 60s)';
         }
 
         // Hint penalty
@@ -261,27 +265,40 @@ const Leaderboard = {
             hard: 2
         }[difficulty] || 1;
 
+        const difficultyLabel = {
+            easy: 'Easy',
+            medium: 'Medium (1.5x)',
+            hard: 'Hard (2x)'
+        }[difficulty] || '';
+
         // Streak multiplier
         const streakMultiplier = Rewards.getStreakBonus();
 
         // Score multiplier from rewards
         const rewardMultiplier = Rewards.getScoreMultiplier();
 
-        // Calculate total
-        let total = basePoints + timeBonus - hintPenalty + noHintBonus;
-        total = Math.max(10, total); // Minimum 10 points
-        total = Math.floor(total * difficultyMultiplier * streakMultiplier * rewardMultiplier);
+        // Calculate subtotal before multipliers
+        let subtotal = basePoints + timeBonus - hintPenalty + noHintBonus;
+        subtotal = Math.max(10, subtotal); // Minimum 10 points
+
+        // Calculate total with multipliers
+        const totalMultiplier = difficultyMultiplier * streakMultiplier * rewardMultiplier;
+        const total = Math.floor(subtotal * totalMultiplier);
 
         return {
             base: basePoints,
             timeBonus,
+            timeLabel,
             hintPenalty,
+            hintsUsed,
             noHintBonus,
-            multipliers: {
-                difficulty: difficultyMultiplier,
-                streak: streakMultiplier,
-                reward: rewardMultiplier
-            },
+            subtotal,
+            difficulty,
+            difficultyLabel,
+            difficultyMultiplier,
+            streakMultiplier,
+            rewardMultiplier,
+            totalMultiplier,
             total
         };
     }
