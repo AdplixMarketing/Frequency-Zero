@@ -573,12 +573,26 @@ const Game = {
         }
 
         modal.classList.add('active');
+
+        // Show interstitial ad when modal opens
+        if (typeof ezstandalone !== 'undefined') {
+            ezstandalone.cmd.push(function() {
+                ezstandalone.showAds(104);
+            });
+        }
     },
 
     hideResultModal() {
         const modal = document.getElementById('result-modal');
         if (modal) {
             modal.classList.remove('active');
+        }
+
+        // Destroy interstitial ad when modal closes
+        if (typeof ezstandalone !== 'undefined') {
+            ezstandalone.cmd.push(function() {
+                ezstandalone.destroyPlaceholders(104);
+            });
         }
     },
 
