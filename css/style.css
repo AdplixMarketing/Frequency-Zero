@@ -1153,3 +1153,21 @@ button.stat-badge .stat-value,
     outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
 }
+
+/* ===== Footer ===== */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.site-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.site-footer a:hover {
+    color: var(--accent-primary);
+}
