@@ -18,7 +18,7 @@ const Share = {
 
     async share(text) {
         const shareData = {
-            title: 'Frequency Zero',
+            title: 'Decodji',
             text: text,
             url: window.location.origin
         };
@@ -83,7 +83,7 @@ const Share = {
         const streak = Storage.getStreak();
         const stars = this.getStars(solved, hintsUsed);
 
-        let text = `🎬 Frequency Zero\n\n`;
+        let text = `🎯 Decodji\n\n`;
         text += `${puzzle.emojis.join('')}\n`;
         text += `${stars}\n\n`;
 

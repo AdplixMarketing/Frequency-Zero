@@ -203,7 +203,7 @@ const Daily = {
         const dayIndex = this.getDayIndex();
         const totalScore = progress.scores.reduce((sum, s) => sum + s, 0);
 
-        let text = `🎬 Frequency Zero - Day ${dayIndex + 1}\n\n`;
+        let text = `🎯 Decodji - Day ${dayIndex + 1}\n\n`;
 
         progress.puzzles.forEach((solved, i) => {
             const difficulty = ['Easy', 'Medium', 'Hard'][i];

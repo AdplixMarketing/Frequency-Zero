@@ -1,4 +1,4 @@
-# Frequency Zero - Emoji Decoder Game
+# Decodji - The Emoji Decoder Game
 
 An addictive emoji puzzle game where players decode movies, phrases, songs, and brands from emoji clues. Features daily challenges, hint systems, leaderboards, and retention mechanics.
 
@@ -34,7 +34,7 @@ Streak Multiplier: 1.1x per consecutive day (max 2x)
 ## File Structure
 
 ```
-Frequency-Zero/
+decodji/
 ├── index.html              # Main game page
 ├── css/
 │   ├── style.css           # Core styling
@@ -115,7 +115,7 @@ function getDailyPuzzles() {
 Players can share their results in a format like:
 
 ```
-🎬 Frequency Zero - Day 47
+🎯 Decodji - Day 47
 
 Easy: ⭐⭐⭐ (no hints!)
 Medium: ⭐⭐ (1 hint)

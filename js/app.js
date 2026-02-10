@@ -7,7 +7,7 @@ const App = {
     // ===== Initialization =====
 
     init() {
-        console.log('🎬 Frequency Zero - Initializing...');
+        console.log('🎯 Decodji - Initializing...');
 
         // Initialize all systems
         Energy.init();
@@ -31,7 +31,7 @@ const App = {
             this.highlightRewardsTab();
         }
 
-        console.log('✅ Frequency Zero - Ready!');
+        console.log('✅ Decodji - Ready!');
     },
 
     // ===== Navigation =====
