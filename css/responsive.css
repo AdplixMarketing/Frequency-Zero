@@ -163,13 +163,22 @@
         font-size: 5rem;
     }
 
-    /* Hide mobile bottom ad */
+    /* Hide mobile bottom ad on tablet and up */
     .ad-bottom {
         display: none;
     }
 
+    /* Reduce bottom padding since no bottom ad */
     .app-container {
         padding-bottom: 40px;
+    }
+}
+
+/* ===== Mobile bottom ad spacing ===== */
+@media (max-width: 767px) {
+    /* Ensure content doesn't get covered by fixed bottom ad */
+    .app-container {
+        padding-bottom: 130px;
     }
 }
 
@@ -184,11 +193,9 @@
         max-width: 728px;
     }
 
-    /* Show sidebar ad on desktop */
+    /* Hide sidebar on smaller desktops - not enough room */
     .ad-sidebar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: none;
     }
 
     .emoji-display {
@@ -218,8 +225,12 @@
         max-width: 900px;
     }
 
+    /* Show sidebar only on wide screens where it won't overlap */
     .ad-sidebar {
-        right: calc((100vw - 900px) / 4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 20px;
     }
 
     .emoji {
@@ -237,8 +248,9 @@
         max-width: 1000px;
     }
 
+    /* Position sidebar with more space on ultra-wide */
     .ad-sidebar {
-        right: calc((100vw - 1000px) / 4);
+        right: calc((100vw - 1000px) / 4 - 150px);
         width: 336px;
         height: 640px;
     }
