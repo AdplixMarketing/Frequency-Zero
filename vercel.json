@@ -1,13 +1,9 @@
 {
-  "headers": [
+  "redirects": [
     {
       "source": "/ads.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
+      "destination": "https://srv.adstxtmanager.com/19390/decodji.com",
+      "permanent": true
     }
   ]
 }

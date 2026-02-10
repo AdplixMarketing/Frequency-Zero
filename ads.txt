@@ -1,5 +1,0 @@
-# Ezoic ads.txt
-# Update this with the full content from your Ezoic dashboard:
-# Monetization > ads.txt > Download/Copy
-
-google.com, pub-9390112498102653, RESELLER, f08c47fec0942fa0
