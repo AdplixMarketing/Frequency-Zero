@@ -164,16 +164,48 @@ const Hints = {
         const hintDisplay = document.getElementById('hint-display');
         if (!hintDisplay) return;
 
-        const revealed = this.getRevealedString();
-        hintDisplay.innerHTML = revealed.split('').map(char => {
-            if (char === '_') {
-                return '<span class="hint-blank">_</span>';
-            } else if (char === ' ') {
-                return '<span class="hint-space"> </span>';
+        if (!this.currentAnswer) return;
+
+        // Group letters by word to prevent mid-word line breaks
+        const words = [];
+        let currentWord = [];
+        let letterIndex = 0;
+
+        for (let i = 0; i < this.currentAnswer.length; i++) {
+            const char = this.currentAnswer[i];
+
+            if (char === ' ') {
+                // End current word and start new one
+                if (currentWord.length > 0) {
+                    words.push(currentWord);
+                    currentWord = [];
+                }
             } else {
-                return `<span class="hint-letter animate-scale-in">${char}</span>`;
+                // Add letter to current word
+                const isRevealed = this.currentReveals[i];
+                currentWord.push({
+                    char: isRevealed ? char : '_',
+                    isRevealed
+                });
             }
-        }).join('');
+        }
+
+        // Don't forget the last word
+        if (currentWord.length > 0) {
+            words.push(currentWord);
+        }
+
+        // Render words with proper grouping
+        hintDisplay.innerHTML = words.map(word => {
+            const letters = word.map(l => {
+                if (l.isRevealed) {
+                    return `<span class="hint-letter">${l.char}</span>`;
+                } else {
+                    return '<span class="hint-blank">_</span>';
+                }
+            }).join('');
+            return `<span class="hint-word">${letters}</span>`;
+        }).join('<span class="hint-space"> </span>');
     },
 
     // ===== Use Hint (Main Method) =====
@@ -286,18 +318,26 @@ hintStyles.textContent = `
         transition: all 0.3s ease;
     }
 
-    .hint-space {
-        width: 16px;
+    .hint-word {
         display: inline-block;
+        white-space: nowrap;
+        margin: 4px 0;
+    }
+
+    .hint-space {
+        display: inline-block;
+        width: 20px;
     }
 
     .hint-letter {
         color: #4ecca3;
         font-weight: 700;
+        letter-spacing: 2px;
     }
 
     .hint-blank {
         color: #666;
+        letter-spacing: 2px;
     }
 `;
 document.head.appendChild(hintStyles);
