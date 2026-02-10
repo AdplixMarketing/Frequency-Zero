@@ -387,6 +387,31 @@ function getRandomPuzzle(excludeIds = []) {
     return allPuzzles[Math.floor(Math.random() * allPuzzles.length)];
 }
 
+// Get random puzzle from specific category
+function getRandomPuzzleByCategory(category, excludeIds = []) {
+    if (category === 'all') {
+        return getRandomPuzzle(excludeIds);
+    }
+
+    if (!PUZZLES[category]) return null;
+
+    const puzzles = [];
+    for (const difficulty in PUZZLES[category]) {
+        PUZZLES[category][difficulty].forEach(puzzle => {
+            if (!excludeIds.includes(puzzle.id)) {
+                puzzles.push({
+                    ...puzzle,
+                    category,
+                    difficulty
+                });
+            }
+        });
+    }
+
+    if (puzzles.length === 0) return null;
+    return puzzles[Math.floor(Math.random() * puzzles.length)];
+}
+
 // Get puzzle by ID
 function getPuzzleById(id) {
     for (const category in PUZZLES) {
@@ -408,4 +433,5 @@ window.getTotalPuzzleCount = getTotalPuzzleCount;
 window.getPuzzlesByDifficulty = getPuzzlesByDifficulty;
 window.getAllPuzzles = getAllPuzzles;
 window.getRandomPuzzle = getRandomPuzzle;
+window.getRandomPuzzleByCategory = getRandomPuzzleByCategory;
 window.getPuzzleById = getPuzzleById;

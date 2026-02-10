@@ -7,6 +7,7 @@ const Game = {
     // ===== State =====
     currentPuzzle: null,
     currentMode: 'daily', // 'daily' or 'practice'
+    selectedCategory: 'all', // 'all' or specific category
     isPlaying: false,
     startTime: null,
     timerInterval: null,
@@ -70,6 +71,20 @@ const Game = {
             });
         });
 
+        // Category buttons
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.selectedCategory = btn.dataset.category;
+                // Load new puzzle with selected category
+                if (this.currentMode === 'practice') {
+                    this.loadPuzzle();
+                }
+            });
+        });
+
         // Result modal buttons
         const nextBtn = document.getElementById('next-btn');
         if (nextBtn) {
@@ -112,6 +127,12 @@ const Game = {
         const dailyProgress = document.getElementById('daily-progress');
         if (dailyProgress) {
             dailyProgress.style.display = mode === 'daily' ? 'block' : 'none';
+        }
+
+        // Show/hide category selector
+        const categorySelector = document.getElementById('category-selector');
+        if (categorySelector) {
+            categorySelector.style.display = mode === 'practice' ? 'block' : 'none';
         }
 
         // Update mode buttons
@@ -165,18 +186,21 @@ const Game = {
         // Use energy
         Energy.playPractice();
 
-        // Get random puzzle (excluding solved ones for variety)
+        // Get random puzzle from selected category (excluding recently solved)
         const solved = Storage.getSolvedPuzzles();
-        const puzzle = getRandomPuzzle(solved.slice(-50)); // Exclude last 50 solved
+        let puzzle = getRandomPuzzleByCategory(this.selectedCategory, solved.slice(-50));
 
         if (!puzzle) {
-            // All puzzles played, reset
-            const allPuzzle = getRandomPuzzle([]);
-            this.currentPuzzle = allPuzzle;
-        } else {
-            this.currentPuzzle = puzzle;
+            // All puzzles in category played, reset exclusions
+            puzzle = getRandomPuzzleByCategory(this.selectedCategory, []);
         }
 
+        if (!puzzle) {
+            // Fallback to any puzzle
+            puzzle = getRandomPuzzle([]);
+        }
+
+        this.currentPuzzle = puzzle;
         this.displayPuzzle(this.currentPuzzle);
         this.startTimer();
         this.isPlaying = true;
