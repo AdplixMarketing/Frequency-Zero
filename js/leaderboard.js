@@ -21,9 +21,67 @@ const Leaderboard = {
     // ===== Initialization =====
 
     init() {
+        this.checkPeriodResets();
         this.generateFakeEntries();
         this.setupTabs();
         this.render();
+    },
+
+    // ===== Period Reset Checks =====
+
+    checkPeriodResets() {
+        const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+        const currentWeek = this.getWeekNumber();
+        const currentMonth = now.getFullYear() * 12 + now.getMonth();
+        const currentDay = Storage.getChicagoDateString();
+
+        const periods = Storage.get('leaderboard_periods', {
+            lastDay: null,
+            lastWeek: null,
+            lastMonth: null
+        });
+
+        // Check daily reset
+        if (periods.lastDay !== currentDay) {
+            console.log('📊 Resetting daily leaderboard');
+            this.resetPeriod('daily');
+            periods.lastDay = currentDay;
+        }
+
+        // Check weekly reset (every Sunday midnight)
+        if (periods.lastWeek !== currentWeek) {
+            console.log('📊 Resetting weekly leaderboard');
+            this.resetPeriod('weekly');
+            periods.lastWeek = currentWeek;
+        }
+
+        // Check monthly reset
+        if (periods.lastMonth !== currentMonth) {
+            console.log('📊 Resetting monthly leaderboard');
+            this.resetPeriod('monthly');
+            periods.lastMonth = currentMonth;
+        }
+
+        Storage.set('leaderboard_periods', periods);
+    },
+
+    resetPeriod(period) {
+        const scores = Storage.getLeaderboardScores();
+        // Keep only fake entries, remove real player scores
+        scores[period] = [];
+        Storage.set('leaderboard', scores);
+
+        // Reset player's period score
+        if (period === 'weekly') {
+            Storage.set('weekly_score', { score: 0, week: this.getWeekNumber() });
+        } else if (period === 'monthly') {
+            Storage.set('monthly_score', { score: 0, month: this.getMonthNumber() });
+        }
+    },
+
+    getMonthNumber() {
+        const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+        return now.getFullYear() * 12 + now.getMonth();
     },
 
     // ===== Generate Fake Leaderboard =====
@@ -32,7 +90,8 @@ const Leaderboard = {
         const existing = Storage.getLeaderboardScores();
 
         // Generate fake entries for each period if needed
-        ['daily', 'weekly', 'alltime'].forEach(period => {
+        ['daily', 'weekly', 'monthly', 'alltime'].forEach(period => {
+            if (!existing[period]) existing[period] = [];
             if (existing[period].length < 20) {
                 const fakeEntries = this.createFakeEntries(period);
                 existing[period] = [...existing[period], ...fakeEntries];
@@ -52,10 +111,11 @@ const Leaderboard = {
         const ranges = {
             daily: { min: 100, max: 750 },
             weekly: { min: 500, max: 5000 },
-            alltime: { min: 2000, max: 50000 }
+            monthly: { min: 2000, max: 20000 },
+            alltime: { min: 5000, max: 100000 }
         };
 
-        const range = ranges[period];
+        const range = ranges[period] || ranges.daily;
         const usedNames = new Set();
 
         for (let i = 0; i < count; i++) {
@@ -194,6 +254,17 @@ const Leaderboard = {
         }
         Storage.set('weekly_score', weeklyData);
         this.updatePeriodScore('weekly', playerName, weeklyData.score, true);
+
+        // Update monthly
+        const monthlyData = Storage.get('monthly_score', { score: 0, month: this.getMonthNumber() });
+        if (monthlyData.month === this.getMonthNumber()) {
+            monthlyData.score += score;
+        } else {
+            monthlyData.score = score;
+            monthlyData.month = this.getMonthNumber();
+        }
+        Storage.set('monthly_score', monthlyData);
+        this.updatePeriodScore('monthly', playerName, monthlyData.score, true);
 
         // Update all-time
         const stats = Storage.getStats();

@@ -345,6 +345,7 @@ const Storage = {
         return this.get('leaderboard', {
             daily: [],
             weekly: [],
+            monthly: [],
             alltime: []
         });
     },
