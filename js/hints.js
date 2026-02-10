@@ -336,7 +336,7 @@ hintStyles.textContent = `
     }
 
     .hint-blank {
-        color: #666;
+        color: #ffffff;
         letter-spacing: 2px;
     }
 `;
