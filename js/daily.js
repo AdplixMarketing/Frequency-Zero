@@ -99,20 +99,29 @@ const Daily = {
 
     getCurrentPuzzleIndex() {
         const progress = this.getProgress();
+        console.log('🔍 Current progress puzzles:', progress.puzzles);
+        console.log('🔍 Progress completed flag:', progress.completed);
+
         // Find first unsolved puzzle
         for (let i = 0; i < 3; i++) {
             if (progress.puzzles[i] === null) {
+                console.log('🎯 Next puzzle index:', i);
                 return i;
             }
         }
+        console.log('✅ All puzzles completed, returning -1');
         return -1; // All completed
     },
 
     getCurrentPuzzle() {
         const index = this.getCurrentPuzzleIndex();
-        if (index === -1) return null;
+        if (index === -1) {
+            console.log('❌ No puzzle to show (all completed)');
+            return null;
+        }
 
         const puzzles = this.getDailyPuzzles();
+        console.log('🎮 Loading puzzle:', puzzles[index]);
         return puzzles[index];
     },
 

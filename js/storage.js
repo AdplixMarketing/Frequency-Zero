@@ -196,17 +196,30 @@ const Storage = {
 
     getDailyProgress() {
         const today = this.getChicagoDateString();
-        console.log('📅 Daily progress for Chicago date:', today);
-        const data = this.get('daily_' + today, {
-            date: today,
-            puzzles: [null, null, null], // Results for each puzzle
-            hintsUsed: [0, 0, 0],
-            times: [null, null, null],
-            scores: [0, 0, 0],
-            completed: false,
-            currentIndex: 0
-        });
-        return data;
+        const storageKey = 'daily_' + today;
+        const existingData = this.get(storageKey, null);
+
+        console.log('📅 Chicago date:', today);
+        console.log('📦 Storage key:', storageKey);
+        console.log('📊 Existing data:', existingData);
+
+        // If no data exists for today, create fresh progress
+        if (!existingData) {
+            console.log('✨ Creating fresh daily progress for new day');
+            const freshData = {
+                date: today,
+                puzzles: [null, null, null],
+                hintsUsed: [0, 0, 0],
+                times: [null, null, null],
+                scores: [0, 0, 0],
+                completed: false,
+                currentIndex: 0
+            };
+            this.set(storageKey, freshData);
+            return freshData;
+        }
+
+        return existingData;
     },
 
     setDailyProgress(progress) {
