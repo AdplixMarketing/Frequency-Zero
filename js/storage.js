@@ -332,11 +332,41 @@ const Storage = {
     // ===== Daily Rewards =====
 
     getRewards() {
-        return this.get('rewards', {
+        const defaultRewards = {
             lastClaimDate: null,
-            claimedDays: [],
-            consecutiveDays: 0
-        });
+            currentDay: 1,        // Which day (1-7) in the cycle
+            cycleClaimedDays: [], // Which days in current cycle are claimed [1,2,3...]
+            totalClaims: 0
+        };
+
+        let rewards = this.get('rewards', defaultRewards);
+
+        // Migration: handle old format
+        if (rewards.consecutiveDays !== undefined && rewards.currentDay === undefined) {
+            rewards = {
+                lastClaimDate: rewards.lastClaimDate,
+                currentDay: 1,
+                cycleClaimedDays: [],
+                totalClaims: rewards.claimedDays ? rewards.claimedDays.length : 0
+            };
+            this.set('rewards', rewards);
+        }
+
+        // Check if streak is broken (missed more than 1 day)
+        if (rewards.lastClaimDate) {
+            const lastClaim = new Date(rewards.lastClaimDate);
+            const today = new Date();
+            const daysDiff = this.getDaysDifference(lastClaim, today);
+
+            if (daysDiff > 1) {
+                // Streak broken - reset to day 1
+                rewards.currentDay = 1;
+                rewards.cycleClaimedDays = [];
+                this.set('rewards', rewards);
+            }
+        }
+
+        return rewards;
     },
 
     claimReward(dayNumber) {
@@ -344,27 +374,25 @@ const Storage = {
         const today = this.getDateString(new Date());
 
         // Check if already claimed today
-        if (rewards.claimedDays.includes(today)) {
+        if (rewards.lastClaimDate === today) {
             return null;
         }
 
-        // Update rewards
+        // Mark current day as claimed
+        if (!rewards.cycleClaimedDays.includes(dayNumber)) {
+            rewards.cycleClaimedDays.push(dayNumber);
+        }
+
+        // Update last claim date
         rewards.lastClaimDate = today;
-        rewards.claimedDays.push(today);
+        rewards.totalClaims++;
 
-        // Calculate consecutive days
-        if (rewards.claimedDays.length > 1) {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yesterdayStr = this.getDateString(yesterday);
-
-            if (rewards.claimedDays.includes(yesterdayStr)) {
-                rewards.consecutiveDays++;
-            } else {
-                rewards.consecutiveDays = 1;
-            }
+        // Advance to next day for tomorrow (or wrap back to day 1 after day 7)
+        if (dayNumber >= 7) {
+            rewards.currentDay = 1;
+            rewards.cycleClaimedDays = []; // Reset cycle
         } else {
-            rewards.consecutiveDays = 1;
+            rewards.currentDay = dayNumber + 1;
         }
 
         this.set('rewards', rewards);

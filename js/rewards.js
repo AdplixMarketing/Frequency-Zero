@@ -28,10 +28,7 @@ const Rewards = {
 
     getCurrentDay() {
         const data = this.getRewardData();
-        const streak = Storage.getStreak();
-
-        // Day is based on consecutive login days (1-7, then cycles)
-        return ((data.consecutiveDays - 1) % 7) + 1 || 1;
+        return data.currentDay || 1;
     },
 
     canClaimToday() {
@@ -147,18 +144,25 @@ const Rewards = {
             const dayNum = index + 1;
             const isClaimed = this.isDayClaimed(dayNum);
             const isAvailable = dayNum === currentDay && canClaim;
-            const isLocked = dayNum > currentDay;
+            // Locked if: future day OR it's today's day but already claimed today
+            const isLocked = dayNum > currentDay || (dayNum === currentDay && !canClaim);
 
             let className = 'reward-day';
             if (isClaimed) className += ' claimed';
             else if (isAvailable) className += ' available';
             else if (isLocked) className += ' locked';
 
+            // Show "Tomorrow" for the next day after claiming
+            let label = reward.label;
+            if (dayNum === currentDay && !canClaim && !isClaimed) {
+                label = 'Tomorrow';
+            }
+
             return `
                 <div class="${className}" data-day="${dayNum}" ${isAvailable ? 'onclick="Rewards.claimReward()"' : ''}>
                     <span class="reward-day-number">Day ${dayNum}</span>
                     <span class="reward-day-icon">${isClaimed ? '✅' : reward.icon}</span>
-                    <span class="reward-day-label">${reward.label}</span>
+                    <span class="reward-day-label">${label}</span>
                 </div>
             `;
         }).join('');
@@ -166,15 +170,9 @@ const Rewards = {
 
     isDayClaimed(dayNum) {
         const data = this.getRewardData();
-        const currentDay = this.getCurrentDay();
 
-        // If we've passed this day in the current cycle, it's claimed
-        if (dayNum < currentDay) return true;
-
-        // If it's the current day and we claimed today
-        if (dayNum === currentDay && !this.canClaimToday()) return true;
-
-        return false;
+        // Check if this day number is in the current cycle's claimed days
+        return data.cycleClaimedDays && data.cycleClaimedDays.includes(dayNum);
     },
 
     updateStreakDisplay() {
