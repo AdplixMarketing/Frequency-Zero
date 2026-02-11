@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Decodji Blog - Emoji puzzle tips, daily hints, answers, and guides to help you decode movies, songs, phrases and brands.">
+    <meta name="keywords" content="emoji puzzle answers, emoji game tips, decode emoji hints, movie emoji quiz">
+    <link rel="canonical" href="https://decodji.com/blog/">
+    <title>Blog - Decodji | Emoji Puzzle Tips, Hints & Guides</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://decodji.com/blog/">
+    <meta property="og:title" content="Decodji Blog - Emoji Puzzle Tips & Guides">
+    <meta property="og:description" content="Master the art of decoding emojis with our tips, hints, and puzzle guides.">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .blog-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .blog-card-image {
+            height: 150px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        .blog-card-content {
+            padding: 20px;
+        }
+        .blog-card-category {
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .blog-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .blog-card h2 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .blog-card h2 a:hover {
+            color: var(--accent-primary);
+        }
+        .blog-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .blog-card-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .featured-post {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .featured-label {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .featured-post h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .featured-post h2 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .featured-post h2 a:hover {
+            color: var(--accent-primary);
+        }
+        .featured-post p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .category-tag {
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .category-tag:hover, .category-tag.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="nav-links">
+            <a href="/">Play Game</a>
+            <a href="/about.html">About</a>
+            <a href="/how-to-play.html">How to Play</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/blog/">Blog</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>Decodji Blog</h1>
+            <p class="subtitle">Tips, hints, and guides to master emoji puzzles</p>
+        </div>
+
+        <div class="categories">
+            <a href="/blog/" class="category-tag active">All Posts</a>
+            <a href="/blog/tips/" class="category-tag">Tips & Tricks</a>
+            <a href="/blog/guides/" class="category-tag">Guides</a>
+            <a href="/blog/movies/" class="category-tag">Movies</a>
+            <a href="/blog/songs/" class="category-tag">Songs</a>
+        </div>
+
+        <div class="featured-post">
+            <span class="featured-label">Featured</span>
+            <h2><a href="/blog/how-to-decode-movie-emojis.html">How to Decode Movie Emojis Like a Pro</a></h2>
+            <p>Master the art of decoding movie emoji puzzles with these expert tips. Learn common patterns, recognize visual cues, and boost your score with our comprehensive guide to movie emoji puzzles.</p>
+            <div class="blog-card-meta">5 min read</div>
+        </div>
+
+        <h2 style="margin-bottom: 20px;">Latest Posts</h2>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-image">🎬</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Movies</div>
+                    <h2><a href="/blog/how-to-decode-movie-emojis.html">How to Decode Movie Emojis Like a Pro</a></h2>
+                    <p>Learn the secrets to quickly decoding movie emoji puzzles with these expert strategies.</p>
+                    <div class="blog-card-meta">5 min read</div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🎵</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Songs</div>
+                    <h2><a href="/blog/decode-song-emojis-guide.html">The Ultimate Guide to Song Emoji Puzzles</a></h2>
+                    <p>From pop hits to classic rock, master the art of decoding song titles from emoji clues.</p>
+                    <div class="blog-card-meta">4 min read</div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">💡</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Tips</div>
+                    <h2><a href="/blog/emoji-puzzle-tips-beginners.html">10 Emoji Puzzle Tips for Beginners</a></h2>
+                    <p>New to emoji puzzles? Start here with our top 10 tips to improve your decoding skills fast.</p>
+                    <div class="blog-card-meta">3 min read</div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🔥</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Strategy</div>
+                    <h2><a href="/blog/maximize-your-score.html">How to Maximize Your Decodji Score</a></h2>
+                    <p>Learn scoring strategies, streak tips, and how to climb the leaderboards.</p>
+                    <div class="blog-card-meta">4 min read</div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🧠</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Science</div>
+                    <h2><a href="/blog/emoji-puzzles-brain-benefits.html">The Brain Benefits of Emoji Puzzles</a></h2>
+                    <p>Discover how playing emoji puzzles can improve your cognitive skills and creativity.</p>
+                    <div class="blog-card-meta">5 min read</div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">📺</div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">TV Shows</div>
+                    <h2><a href="/blog/decode-tv-show-emojis.html">Decoding TV Show Emojis: A Complete Guide</a></h2>
+                    <p>From sitcoms to dramas, learn how to crack TV show emoji puzzles.</p>
+                    <div class="blog-card-meta">4 min read</div>
+                </div>
+            </article>
+        </div>
+
+        <footer class="site-footer" style="margin-top: 60px;">
+            <a href="/about.html">About</a>
+            <span class="footer-divider">•</span>
+            <a href="/contact.html">Contact</a>
+            <span class="footer-divider">•</span>
+            <a href="/terms.html">Terms</a>
+            <span class="footer-divider">•</span>
+            <a href="/privacy.html">Privacy</a>
+        </footer>
+    </div>
+</body>
+</html>
