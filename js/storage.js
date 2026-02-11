@@ -341,13 +341,13 @@ const Storage = {
 
         let rewards = this.get('rewards', defaultRewards);
 
-        // Migration: handle old format
-        if (rewards.consecutiveDays !== undefined && rewards.currentDay === undefined) {
+        // Migration: handle old format - give users a fresh start
+        if (rewards.consecutiveDays !== undefined || rewards.currentDay === undefined) {
             rewards = {
-                lastClaimDate: rewards.lastClaimDate,
+                lastClaimDate: null,  // Reset so they can claim today
                 currentDay: 1,
                 cycleClaimedDays: [],
-                totalClaims: rewards.claimedDays ? rewards.claimedDays.length : 0
+                totalClaims: 0
             };
             this.set('rewards', rewards);
         }
