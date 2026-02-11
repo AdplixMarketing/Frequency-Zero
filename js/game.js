@@ -379,8 +379,9 @@ const Game = {
 
         Storage.markPuzzleSolved(this.currentPuzzle.id);
 
-        // Update leaderboard
-        Leaderboard.addScore(scoreData.total);
+        // Update leaderboard (weekly/monthly only count daily challenge scores)
+        const isDailyChallenge = this.currentMode === 'daily';
+        Leaderboard.addScore(scoreData.total, isDailyChallenge);
 
         // Record daily progress if in daily mode
         if (this.currentMode === 'daily') {

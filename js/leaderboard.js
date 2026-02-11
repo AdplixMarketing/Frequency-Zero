@@ -237,33 +237,39 @@ const Leaderboard = {
 
     // ===== Add Score =====
 
-    addScore(score) {
+    // Add score to leaderboards
+    // dailyChallengeOnly: if true, also updates weekly/monthly (for daily challenges)
+    //                     if false, only updates daily leaderboard (for practice mode)
+    addScore(score, isDailyChallenge = false) {
         const playerName = Storage.getProfile().name;
 
-        // Update daily
+        // Always update daily leaderboard
         this.updatePeriodScore('daily', playerName, score);
 
-        // Update weekly
-        const weeklyData = Storage.get('weekly_score', { score: 0, week: this.getWeekNumber() });
-        if (weeklyData.week === this.getWeekNumber()) {
-            weeklyData.score += score;
-        } else {
-            weeklyData.score = score;
-            weeklyData.week = this.getWeekNumber();
-        }
-        Storage.set('weekly_score', weeklyData);
-        this.updatePeriodScore('weekly', playerName, weeklyData.score, true);
+        // Only update weekly/monthly for daily challenge scores
+        if (isDailyChallenge) {
+            // Update weekly
+            const weeklyData = Storage.get('weekly_score', { score: 0, week: this.getWeekNumber() });
+            if (weeklyData.week === this.getWeekNumber()) {
+                weeklyData.score += score;
+            } else {
+                weeklyData.score = score;
+                weeklyData.week = this.getWeekNumber();
+            }
+            Storage.set('weekly_score', weeklyData);
+            this.updatePeriodScore('weekly', playerName, weeklyData.score, true);
 
-        // Update monthly
-        const monthlyData = Storage.get('monthly_score', { score: 0, month: this.getMonthNumber() });
-        if (monthlyData.month === this.getMonthNumber()) {
-            monthlyData.score += score;
-        } else {
-            monthlyData.score = score;
-            monthlyData.month = this.getMonthNumber();
+            // Update monthly
+            const monthlyData = Storage.get('monthly_score', { score: 0, month: this.getMonthNumber() });
+            if (monthlyData.month === this.getMonthNumber()) {
+                monthlyData.score += score;
+            } else {
+                monthlyData.score = score;
+                monthlyData.month = this.getMonthNumber();
+            }
+            Storage.set('monthly_score', monthlyData);
+            this.updatePeriodScore('monthly', playerName, monthlyData.score, true);
         }
-        Storage.set('monthly_score', monthlyData);
-        this.updatePeriodScore('monthly', playerName, monthlyData.score, true);
 
         this.render();
     },
