@@ -274,6 +274,10 @@ const Game = {
         const userAnswer = input.value.trim();
         if (!userAnswer) return;
 
+        // Hide welcome hook after first interaction
+        const hook = document.getElementById('welcome-hook');
+        if (hook) hook.style.display = 'none';
+
         const isCorrect = this.fuzzyMatch(userAnswer, this.currentPuzzle.answer);
 
         if (isCorrect) {
