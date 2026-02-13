@@ -30,11 +30,11 @@ const App = {
         // Initialize game last
         Game.init();
 
-        // Hide welcome hook for returning players who already started today
+        // Hide tagline for returning players who already started today
         const dailyProgress = Storage.getDailyProgress();
         if (dailyProgress && dailyProgress.puzzles.some(p => p !== null)) {
-            const hook = document.getElementById('welcome-hook');
-            if (hook) hook.style.display = 'none';
+            const tagline = document.getElementById('game-tagline');
+            if (tagline) tagline.style.display = 'none';
         }
 
         // Check for daily reward availability
