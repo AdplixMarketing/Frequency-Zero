@@ -2,71 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://decodji.com/</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://decodji.com/about.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://decodji.com/how-to-play.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://decodji.com/faq.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://decodji.com/blog/</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/how-to-solve-emoji-puzzles.html</loc>
+    <loc>https://decodji.com/blog/emoji-puzzle-tips-beginners.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/best-emoji-puzzle-games-2024.html</loc>
+    <loc>https://decodji.com/blog/how-to-decode-movie-emojis.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/emoji-history-and-origins.html</loc>
+    <loc>https://decodji.com/blog/decode-tv-show-emojis.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/brain-benefits-of-puzzle-games.html</loc>
+    <loc>https://decodji.com/blog/emoji-puzzles-brain-benefits.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/movie-emoji-quiz-guide.html</loc>
+    <loc>https://decodji.com/blog/decode-song-emojis-guide.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://decodji.com/blog/why-daily-puzzle-games-are-addictive.html</loc>
+    <loc>https://decodji.com/blog/maximize-your-score.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://decodji.com/contact.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://decodji.com/terms.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://decodji.com/privacy.html</loc>
+    <lastmod>2026-02-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
