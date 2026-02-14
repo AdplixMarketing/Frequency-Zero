@@ -207,9 +207,11 @@
             padding: 0 25px 20px 25px;
             color: var(--text-secondary);
             line-height: 1.8;
+        }
+        .js-loaded .faq-answer {
             display: none;
         }
-        .faq-item.open .faq-answer {
+        .js-loaded .faq-item.open .faq-answer {
             display: block;
         }
         .faq-answer p {
@@ -521,6 +523,13 @@
     </div>
 
     <script>
+        // Enable accordion collapse only after JS loads
+        // Crawlers without JS see all answers expanded (better for SEO)
+        document.querySelector('.page-container').classList.add('js-loaded');
+
+        // Open first item by default
+        document.querySelector('.faq-item').classList.add('open');
+
         // FAQ accordion functionality
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
