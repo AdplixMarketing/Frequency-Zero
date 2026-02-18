@@ -28,7 +28,7 @@
     <meta name="twitter:description" content="🎬🎵 Free daily emoji puzzle game! Like Wordle & NYT Connections but with emojis. Guess movies, songs & brands. No download needed!">
     <meta name="twitter:image" content="https://decodji.com/images/og-image.png">
 
-    <!-- Structured Data -->
+    <!-- Structured Data: WebApplication -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -52,6 +52,71 @@
             "ratingCount": "150"
         },
         "keywords": "emoji puzzle game, guess the emoji, wordle alternative, NYT connections alternative, daily puzzle game, emoji challenge, free browser game 2026"
+    }
+    </script>
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Decodji",
+        "url": "https://decodji.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://decodji.com/images/og-image.png",
+            "width": 1200,
+            "height": 630
+        }
+    }
+    </script>
+
+    <!-- Structured Data: WebSite with SearchAction -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Decodji",
+        "url": "https://decodji.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://decodji.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Structured Data: Game -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Decodji - Emoji Puzzle Game",
+        "description": "Free daily emoji puzzle game where you decode movies, songs, TV shows, and brands from emoji clues. Like Wordle and NYT Connections.",
+        "url": "https://decodji.com",
+        "genre": ["Puzzle", "Trivia", "Quiz"],
+        "numberOfPlayers": {
+            "@type": "QuantitativeValue",
+            "value": 1
+        },
+        "gameItem": [
+            {
+                "@type": "Thing",
+                "name": "Emoji Clues"
+            },
+            {
+                "@type": "Thing",
+                "name": "Daily Challenges"
+            }
+        ],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "applicationCategory": "Game",
+        "operatingSystem": "Any"
     }
     </script>
 
