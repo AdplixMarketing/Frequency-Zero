@@ -119,18 +119,24 @@ const Storage = {
     // ===== Hints System =====
 
     getHints() {
+        const todayChicago = this.getChicagoDateString();
         const data = this.get('hints_data', {
             current: 5,
-            lastRefill: Date.now()
+            lastRefillDate: todayChicago
         });
 
-        // Check for daily refill
-        const now = new Date();
-        const lastRefill = new Date(data.lastRefill);
-
-        if (this.isNewDay(lastRefill, now)) {
+        // Migrate from old timestamp format
+        if (data.lastRefill && !data.lastRefillDate) {
+            data.lastRefillDate = todayChicago;
             data.current = 5;
-            data.lastRefill = now.getTime();
+            delete data.lastRefill;
+            this.set('hints_data', data);
+        }
+
+        // Check for daily refill (Chicago timezone, matches daily challenge reset)
+        if (data.lastRefillDate !== todayChicago) {
+            data.current = 5;
+            data.lastRefillDate = todayChicago;
             this.set('hints_data', data);
         }
 
@@ -138,9 +144,10 @@ const Storage = {
     },
 
     setHints(amount) {
+        const todayChicago = this.getChicagoDateString();
         const data = this.get('hints_data', {
             current: 5,
-            lastRefill: Date.now()
+            lastRefillDate: todayChicago
         });
         data.current = Math.max(0, amount);
         this.set('hints_data', data);
