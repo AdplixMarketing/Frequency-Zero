@@ -119,13 +119,32 @@ const Storage = {
     // ===== Hints System =====
 
     getHints() {
-        return this.get('hints', 5);
+        const data = this.get('hints_data', {
+            current: 5,
+            lastRefill: Date.now()
+        });
+
+        // Check for daily refill
+        const now = new Date();
+        const lastRefill = new Date(data.lastRefill);
+
+        if (this.isNewDay(lastRefill, now)) {
+            data.current = 5;
+            data.lastRefill = now.getTime();
+            this.set('hints_data', data);
+        }
+
+        return data.current;
     },
 
     setHints(amount) {
-        const hints = Math.max(0, amount);
-        this.set('hints', hints);
-        return hints;
+        const data = this.get('hints_data', {
+            current: 5,
+            lastRefill: Date.now()
+        });
+        data.current = Math.max(0, amount);
+        this.set('hints_data', data);
+        return data.current;
     },
 
     addHints(amount) {
